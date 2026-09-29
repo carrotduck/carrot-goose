@@ -1,12 +1,22 @@
-# Full-body motion preview
+# Joint mapping and editing
 
-The model binds 16 bus-servo channels and two head channels. Choose **Legs** above the viewport to edit hip, knee and ankle targets; choose **Head and arms** to return to the upper-body controls. Editing a target updates its joint and child segments immediately. Frames, timeline playback and saved copies use the same channel values.
+The model binds 16 body joints and two head channels. Editing a target updates the corresponding joint and its child segments immediately. Frames, timeline playback and saved copies use the same values.
 
-| Robot side | Hip roll | Hip pitch | Knee pitch | Ankle pitch | Ankle roll |
-| --- | --- | --- | --- | --- | --- |
-| Left | 5 | 4 | 3 | 2 | 1 |
-| Right | 13 | 12 | 11 | 10 | 9 |
+| Body region | Robot left | Robot right |
+| --- | --- | --- |
+| Shoulder pitch | Bus 8 | Bus 16 |
+| Shoulder lateral movement | Bus 7 | Bus 15 |
+| Elbow | Bus 6 | Bus 14 |
+| Hip roll | Bus 5 | Bus 13 |
+| Hip pitch | Bus 4 | Bus 12 |
+| Knee pitch | Bus 3 | Bus 11 |
+| Ankle pitch | Bus 2 | Bus 10 |
+| Ankle roll | Bus 1 | Bus 9 |
+| Head pitch | PWM 1 | — |
+| Head yaw | PWM 2 | — |
 
-The photo-based geometry uses approximate pivot locations and display directions. The straight-leg display reference uses knee values 303 and 696; it is a visualization reference, not a device reset command. Axis, direction and offset can be inspected in Joint mapping. Numeric encoding bounds are not calibrated physical travel limits.
+Select a frame, adjust its targets and choose **Update** to save an edited copy. Use the viewport selector to show the controls for the desired body region, or open **Joint values** to inspect all channels together. Scrub the timeline or play the sequence to review the result.
 
-A hip rotation carries the thigh, shin and foot; a knee rotation carries the shin and foot; ankle rotations orient the foot. The torso stays fixed in world space. This supports full-body joint preview, but does not simulate walking displacement, balance, ground contact or actuator forces. Optional imported channels 17 and 18 remain in sequence data and are not assigned invented joints.
+The photo-based geometry uses approximate pivot locations and display directions. Axis, direction and offset are available in **Joint mapping**. Numeric encoding bounds require physical calibration before use on a robot.
+
+The torso stays fixed in world space. The preview shows joint trajectories; walking displacement, balance, ground contact and actuator forces are outside this model. Optional imported channels 17 and 18 remain in sequence data.

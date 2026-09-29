@@ -25,7 +25,7 @@ flowchart LR
     W[Carrot Goose motion workbench] -. reviewed motion data .-> C
 ```
 
-The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following; the recorded exchange uses an authored performance sequence. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review rather than issuing servo commands.
+The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following; the recorded exchange uses an authored performance sequence. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review.
 
 ## Physical interaction
 
@@ -44,19 +44,19 @@ The recorded demonstration connects webpage dialogue cues to an authored sequenc
 
 Choose a motion, scrub its timeline and edit a frame's joint targets. The workbench shows the values used across the selected sequence. A language request can generate a new movement or change the amplitude and speed of the current one.
 
-Moving a slider previews the corresponding joint immediately. Connector lines identify the controlled joint as the camera moves. Select **Update** to save the preview as a frame. The separate **Offset** field adjusts the model's calibration preview and is exported with the mapping; it is not a second joint axis.
+Moving a slider previews the corresponding joint immediately. Connector lines identify the controlled joint as the camera moves. Select **Update** to save the preview as a frame. The separate **Offset** field adjusts the model's calibration preview and is exported with the mapping.
 
-Try “Raise an arm, nod twice, then return” or “Reduce the current amplitude to 70% and halve the speed.” The interface opens in English and can be switched to Chinese.
+Try “Raise an arm, nod twice, then return” or “Reduce the current amplitude to 70% and halve the speed.”
 
 **Analyze motion library** scans loaded sequences for pauses, direction changes, returns and event boundaries. Select a candidate, adjust its start and end frames, preview it, then name and confirm it. Saved fragments retain source frames and entry/exit poses, persist in this browser and can be exported together. The analyzer proposes kinematic fragments; expressive meanings are assigned during review. See [motion segmentation](docs/segmentation.md).
 
-The working installation contains 138 sequences imported from the robot's cached library and rehearsal material. This repository includes an authored greeting and the demonstration choreography. Import your own TonyPi action folder to build a local library:
+The workbench contains 138 motion sequences. Import your own TonyPi action folder to build a local library:
 
 ```sh
 python tools/import_actions.py /path/to/ActionGroups
 ```
 
-The importer reads all servo channels in each `.d6a` file. The 3D preview includes articulated hips, knees and ankles alongside the arms and head. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
+The importer reads all servo channels in each `.d6a` file. The 3D preview supports full-body joint movement. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
 
 ## Run
 
@@ -86,7 +86,7 @@ The local server listens on this computer only. The hosted workbench generates m
 | `tools` | Action import and analysis |
 | `unreal` | UE 5.7 editor scripts for the earlier block-model preview |
 
-The robot modules preserve the rehearsal implementation and its own joint conventions. They are reference components for an existing TonyPi installation; the browser exports preview data rather than issuing servo commands. See [robot setup](docs/robot.md) before adapting them to another robot.
+The robot modules preserve the rehearsal implementation and its own joint conventions. They are reference components for an existing TonyPi installation. See [robot setup](docs/robot.md) before adapting them to another robot.
 
 ## Development
 
@@ -103,4 +103,4 @@ The [demonstration](https://youtu.be/SYHgv-Zi3hE) follows a short exchange from 
 
 [Hiwonder TonyPi](https://github.com/Hiwonder/TonyPi) provides the platform code and action-file reference. [URDF Loaders](https://github.com/gkjohnson/urdf-loaders) is a useful reference for future calibrated robot models. The browser currently uses Three.js and a procedural model. Dependency attribution is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-See [full-body joint preview](docs/full-body-preview.md) for the leg mapping and editing workflow.
+See [joint mapping and editing](docs/full-body-preview.md).
