@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img">
+<title>03 / 动作编辑与真机复核</title>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#665449"/></marker></defs>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#392d27}.title{font-size:25px}.label{font-size:18px}.small{font-size:15px;fill:#725c4c}</style><rect width="1200" height="610" fill="#fffdfa"/>
+<text x="34" y="45" class="title">03 / 动作编辑与真机复核</text>
+<rect x="30" y="90" width="540" height="370" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M30 134h540" stroke="#bfae9e"/>
+<rect x="31" y="91" width="538" height="42" fill="#f8e4cc"/>
+<text x="46" y="119" class="label">浏览器动作工作台</text>
+<rect x="610" y="90" width="560" height="370" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M610 134h560" stroke="#bfae9e"/>
+<rect x="611" y="91" width="558" height="42" fill="#f8e4cc"/>
+<text x="626" y="119" class="label">真机排练</text>
+<rect x="55" y="165" width="220" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="165.0" y="202.0" text-anchor="middle" class="label">导入动作文件</text>
+<text x="165.0" y="225.0" text-anchor="middle" class="label">或输入动作描述</text>
+<rect x="320" y="165" width="220" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="430.0" y="202.0" text-anchor="middle" class="label">动作数据校验</text>
+<text x="430.0" y="225.0" text-anchor="middle" class="label">关节目标值与时长</text>
+<rect x="120" y="330" width="360" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="300.0" y="367.0" text-anchor="middle" class="label">三维预览与逐帧编辑</text>
+<text x="300.0" y="390.0" text-anchor="middle" class="label">观察、修改、保存</text>
+<rect x="645" y="165" width="230" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="760.0" y="202.0" text-anchor="middle" class="label">复核并适配</text>
+<text x="760.0" y="225.0" text-anchor="middle" class="label">设备关节约定</text>
+<rect x="910" y="165" width="230" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="1025.0" y="202.0" text-anchor="middle" class="label">本地控制器</text>
+<text x="1025.0" y="225.0" text-anchor="middle" class="label">真机动作</text>
+<rect x="730" y="330" width="320" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="890.0" y="367.0" text-anchor="middle" class="label">观察间隙与动作</text>
+<text x="890.0" y="390.0" text-anchor="middle" class="label">读取执行回执</text>
+<path d="M275 205H320" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M430 250V292H300V330" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480 370H590V205H645" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="6 5"/>
+<path d="M875 205H910" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M1025 250V330" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M730 370H630V435H300V415" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="585" y="292" class="small">经复核</text>
+<text x="585" y="314" class="small">后交接</text>
+<text x="35" y="520" class="small">预览驱动六路手臂和两路头部；导入的腿部数值保留在数据中。</text>
+<text x="35" y="550" class="small">浏览器导出动作数据，经过单独复核后交给真机执行端。</text>
+<text x="35" y="580" class="small">姿态与节奏预览不能验证真机接触、平衡和负载。</text>
+</svg>

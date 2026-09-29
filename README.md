@@ -1,8 +1,6 @@
-# 胡萝卜鹅 · Carrot Goose
+# Carrot Goose
 
 Carrot Goose is a TonyPi robot project exploring how gestures accompany conversation. It brings together a 3D motion workbench, motion planning and Python modules used during physical rehearsals.
-
-胡萝卜鹅探索机器人如何用动作回应对话。项目将 3D 动作编辑、语言驱动的动作规划与 TonyPi 排练代码放在一起，用于编排、预览和调整身体表达。
 
 [Open the workbench](https://carrotgoose.online/) · [Watch the demonstration](https://youtu.be/SYHgv-Zi3hE) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 
@@ -10,11 +8,11 @@ Carrot Goose is a TonyPi robot project exploring how gestures accompany conversa
 
 [From servo programming to motion rehearsal](https://carrotgoose.online/project.html) explains the workbench’s role in the project.
 
-## Motion rehearsal / 动作排练
+## Motion rehearsal
 
 Choose a motion, scrub its timeline and edit a frame's joint targets. The workbench shows the values used across the selected sequence. A language request can generate a new movement or change the amplitude and speed of the current one.
 
-选择动作后，可以拖动时间轴、修改舵机目标值，再播放整段。输入“抬手，点头两次，再回位”，或“把当前动作幅度缩到 70%，速度减半”，可以生成新的动作版本。
+Try “Raise an arm, nod twice, then return” or “Reduce the current amplitude to 70% and halve the speed.” The interface opens in English and can be switched to Chinese.
 
 The working installation contains 137 sequences imported from the robot's cached library and rehearsal material. This repository includes an authored greeting and the demonstration choreography. Import your own TonyPi action folder to build a local library:
 
@@ -24,7 +22,19 @@ python tools/import_actions.py /path/to/ActionGroups
 
 The importer reads all servo channels in each `.d6a` file. The current 3D model animates six arm channels and two head channels; the remaining values stay in the imported data. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
 
-## Run / 运行
+## Conversation and physical expression
+
+The demonstration follows three moments: attention, a playful reply and an invitation to hug. Webpage dialogue cues advance an authored sequence. The local robot controller executes movements and returns completion or interruption feedback. Short voice cues play through the robot's attached audio device.
+
+![Conversation and physical execution](docs/diagrams/architecture.svg)
+
+The browser workbench supports a separate authoring workflow: import or describe a motion, inspect the model, revise frame targets and save the sequence. Physical rehearsal follows a reviewed handoff to the device controller.
+
+![Motion authoring and physical review](docs/diagrams/workflow.svg)
+
+The project includes [motion and perception modules](docs/robot.md), [dialogue integration](docs/integration.md), and an [expressive performance score](docs/performance.md). The [project study](docs/project.md) explains the design question and the proposed timing comparison.
+
+## Run
 
 Install Node.js 22 or newer, then:
 
@@ -41,7 +51,7 @@ node --env-file=.env server.mjs
 
 The local server listens on this computer only. The hosted workbench uses the existing Carrot Duck account. [Integration notes](docs/integration.md) explain that connection and the dedicated Carrot Goose domain.
 
-## Project files / 项目结构
+## Project files
 
 | Directory | Contents |
 | --- | --- |

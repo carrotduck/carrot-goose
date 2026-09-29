@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img">
+<title>02 / A Small Gesture of Care</title>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#665449"/></marker></defs>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#392d27}.title{font-size:25px}.label{font-size:18px}.small{font-size:15px;fill:#725c4c}</style><rect width="1200" height="610" fill="#fffdfa"/>
+<text x="34" y="45" class="title">02 / A Small Gesture of Care</text>
+<rect x="150" y="90" width="320" height="390" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M150 134h320" stroke="#bfae9e"/>
+<rect x="151" y="91" width="318" height="42" fill="#f8e4cc"/>
+<text x="166" y="119" class="label">Attention</text>
+<rect x="480" y="90" width="330" height="390" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M480 134h330" stroke="#bfae9e"/>
+<rect x="481" y="91" width="328" height="42" fill="#f8e4cc"/>
+<text x="496" y="119" class="label">Playful reply</text>
+<rect x="820" y="90" width="350" height="390" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M820 134h350" stroke="#bfae9e"/>
+<rect x="821" y="91" width="348" height="42" fill="#f8e4cc"/>
+<text x="836" y="119" class="label">Invitation</text>
+<rect x="180" y="165" width="260" height="75" fill="#fffaf3" stroke="#a9917d"/>
+<text x="310.0" y="208.5" text-anchor="middle" class="label">Approach / hand cue</text>
+<rect x="510" y="165" width="270" height="75" fill="#fffaf3" stroke="#a9917d"/>
+<text x="645.0" y="197.0" text-anchor="middle" class="label">“Are you happy today?”</text>
+<text x="645.0" y="220.0" text-anchor="middle" class="label">“Not telling.”</text>
+<rect x="850" y="165" width="290" height="75" fill="#fffaf3" stroke="#a9917d"/>
+<text x="995.0" y="197.0" text-anchor="middle" class="label">“What is it?”</text>
+<text x="995.0" y="220.0" text-anchor="middle" class="label">Hug reply appears</text>
+<rect x="180" y="290" width="260" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="310.0" y="327.0" text-anchor="middle" class="label">Orient head</text>
+<text x="310.0" y="350.0" text-anchor="middle" class="label">then face the user</text>
+<rect x="510" y="290" width="270" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="645.0" y="327.0" text-anchor="middle" class="label">Pause, nod</text>
+<text x="645.0" y="350.0" text-anchor="middle" class="label">and playful movement</text>
+<rect x="850" y="290" width="290" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="995.0" y="327.0" text-anchor="middle" class="label">Reach, open both arms</text>
+<text x="995.0" y="350.0" text-anchor="middle" class="label">hold, then return</text>
+<rect x="180" y="410" width="260" height="45" fill="#fffaf3" stroke="#a9917d"/>
+<text x="310.0" y="438.5" text-anchor="middle" class="label">Mm?</text>
+<rect x="510" y="410" width="270" height="45" fill="#fffaf3" stroke="#a9917d"/>
+<text x="645.0" y="438.5" text-anchor="middle" class="label">Hey</text>
+<rect x="850" y="410" width="290" height="45" fill="#fffaf3" stroke="#a9917d"/>
+<text x="995.0" y="438.5" text-anchor="middle" class="label">Return to idle</text>
+<path d="M440 205H510" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M780 205H850" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M310 240V290" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M645 240V290" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M995 240V290" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="35" y="205" class="small">Dialogue</text>
+<text x="35" y="337" class="small">Movement</text>
+<text x="35" y="439" class="small">Voice / end</text>
+<text x="35" y="530" class="small">Text is readable before the playful response; reaching leads into the invitation.</text>
+<text x="35" y="560" class="small">Tracking can be replaced with authored head cues for a repeatable recording.</text>
+</svg>

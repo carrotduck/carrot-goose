@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="610" viewBox="0 0 1200 610" role="img">
+<title>03 / Motion authoring and physical review</title>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#665449"/></marker></defs>
+<style>text{font-family:Arial,"Microsoft YaHei",sans-serif;fill:#392d27}.title{font-size:25px}.label{font-size:18px}.small{font-size:15px;fill:#725c4c}</style><rect width="1200" height="610" fill="#fffdfa"/>
+<text x="34" y="45" class="title">03 / Motion authoring and physical review</text>
+<rect x="30" y="90" width="540" height="370" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M30 134h540" stroke="#bfae9e"/>
+<rect x="31" y="91" width="538" height="42" fill="#f8e4cc"/>
+<text x="46" y="119" class="label">Browser workbench</text>
+<rect x="610" y="90" width="560" height="370" fill="#fffdfa" stroke="#bfae9e"/>
+<path d="M610 134h560" stroke="#bfae9e"/>
+<rect x="611" y="91" width="558" height="42" fill="#f8e4cc"/>
+<text x="626" y="119" class="label">Physical rehearsal</text>
+<rect x="55" y="165" width="220" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="165.0" y="202.0" text-anchor="middle" class="label">Imported action files</text>
+<text x="165.0" y="225.0" text-anchor="middle" class="label">or language request</text>
+<rect x="320" y="165" width="220" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="430.0" y="202.0" text-anchor="middle" class="label">Validated motion data</text>
+<text x="430.0" y="225.0" text-anchor="middle" class="label">joint targets + timing</text>
+<rect x="120" y="330" width="360" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="300.0" y="367.0" text-anchor="middle" class="label">3D preview and frame editing</text>
+<text x="300.0" y="390.0" text-anchor="middle" class="label">inspect, revise, save</text>
+<rect x="645" y="165" width="230" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="760.0" y="202.0" text-anchor="middle" class="label">Review and adapt</text>
+<text x="760.0" y="225.0" text-anchor="middle" class="label">to device conventions</text>
+<rect x="910" y="165" width="230" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="1025.0" y="202.0" text-anchor="middle" class="label">Local controller</text>
+<text x="1025.0" y="225.0" text-anchor="middle" class="label">physical movement</text>
+<rect x="730" y="330" width="320" height="85" fill="#fffaf3" stroke="#a9917d"/>
+<text x="890.0" y="367.0" text-anchor="middle" class="label">Observe clearance and motion</text>
+<text x="890.0" y="390.0" text-anchor="middle" class="label">read execution feedback</text>
+<path d="M275 205H320" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M430 250V292H300V330" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480 370H590V205H645" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)" stroke-dasharray="6 5"/>
+<path d="M875 205H910" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M1025 250V330" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M730 370H630V435H300V415" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
+<text x="585" y="292" class="small">Reviewed</text>
+<text x="585" y="314" class="small">handoff</text>
+<text x="35" y="520" class="small">The preview animates six arm channels and two head channels; imported leg values are retained.</text>
+<text x="35" y="550" class="small">The browser exports motion data. Physical execution requires a separate reviewed handoff.</text>
+<text x="35" y="580" class="small">Pose and timing review does not establish contact, balance or load on the real robot.</text>
+</svg>
