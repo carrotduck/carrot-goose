@@ -6,6 +6,8 @@ The hosted adapter verifies the account session, limits request frequency and de
 
 Plans use `simulation_only` and `hardware_executed: false`. Export schemas retain their original version identifiers for compatibility. The public product name is Carrot Goose.
 
-For a new domain, serve `apps/studio` and the planner behind the same origin, replace the account adapter in `editor.js`, and configure HTTPS and account sessions. Existing Carrot Duck login storage belongs to that origin and does not transfer to a new domain. Keep provider credentials on the server.
+The hosted workbench is at `https://carrotgoose.online/`. Use the sign-in dialog with an existing Carrot Duck recovery key to establish a session on this domain.
+
+For another deployment, serve `apps/studio` and the planner behind the same origin, replace the account adapter in `editor.js`, and configure HTTPS and account sessions. Existing Carrot Duck login storage belongs to that origin and does not transfer to a new domain. Keep provider credentials on the server.
 
 The ordinary Duck conversation page and the motion prompt are separate entry points. The simulator sends only its current request and motion context to the planner.

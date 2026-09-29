@@ -4,9 +4,11 @@ Carrot Goose is a TonyPi robot project exploring how gestures accompany conversa
 
 胡萝卜鹅探索机器人如何用动作回应对话。项目将 3D 动作编辑、语言驱动的动作规划与 TonyPi 排练代码放在一起，用于编排、预览和调整身体表达。
 
-[Open the workbench](https://carrotduck.online/xiaoji-studio/) · [Watch the demonstration](https://youtu.be/SYHgv-Zi3hE) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
+[Open the workbench](https://carrotgoose.online/) · [Watch the demonstration](https://youtu.be/SYHgv-Zi3hE) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 
 ![Carrot Goose motion workbench](docs/workbench.png)
+
+[From servo programming to motion rehearsal](https://carrotgoose.online/project.html) explains the workbench’s role in the project.
 
 ## Motion rehearsal / 动作排练
 
@@ -37,7 +39,7 @@ Open `http://127.0.0.1:8770`. Editing and playback work locally. For language pl
 node --env-file=.env server.mjs
 ```
 
-The local server listens on this computer only. The hosted workbench uses the existing Carrot Duck account. [Integration notes](docs/integration.md) explain that connection and the move to a future domain.
+The local server listens on this computer only. The hosted workbench uses the existing Carrot Duck account. [Integration notes](docs/integration.md) explain that connection and the dedicated Carrot Goose domain.
 
 ## Project files / 项目结构
 

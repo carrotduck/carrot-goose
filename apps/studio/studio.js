@@ -1,19 +1,19 @@
 import * as T from 'three';
-import {createRobot} from './robot.js?v=3';
+import {createRobot} from './robot.js?v=4';
 import {OrbitControls} from './vendor/OrbitControls.js';
 const labels={"复原到起点 · 安静待机": "Rest", "你靠近 · 转向你": "Turn toward you", "手指向左 · 双手安静": "Look at finger", "手指向右": "Look right", "手指向上": "Look up", "手指向下": "Look down", "手停 · 视线停在手上": "Hold gaze", "看向你的脸": "Look at face", "再看看你的手": "Look at hand", "又看向你": "Look at face", "再看手 · 低头等你": "Look down and wait", "你的第一句文字": "First question", "不告诉你 · 文字先出现": "Wait for reply", "轻轻点头 · 低下": "Nod", "点头以后 · 抬头看你": "Look up at you", "让开心停留一下": "Pause", "Cheer · 双臂前抬与点头摇摆 · 1/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 2/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 3/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 4/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 5/5": "Cheer", "再看你 · 等你的手移开": "Look at hand", "手指已移开 · 注意到离开": "Hand withdraws", "第一次轻轻抬手": "Raise arm", "犹豫 · 缩回一点": "Hesitate", "Hey · 看向你的脸": "Hey, look at face", "再看你的手 · 决定邀请": "Look at hand", "第二次邀请 · 胸前停住": "Invite again", "坚定地等你 · 看手再看脸": "Nod and look back", "你的第二句文字": "Second question", "拥抱回复出现 · 保持邀请": "Read hug reply", "双臂向前 · 邀请拥抱 · 1/3": "Offer hug", "双臂向前 · 邀请拥抱 · 2/3": "Offer hug", "双臂向前 · 邀请拥抱 · 3/3": "Offer hug", "一个不接触的拥抱 · 停留": "Hold invitation", "自然放下双臂": "Lower arms", "拥抱后看向你 · 回到待机": "Return to rest"};
 const label=x=>labels[x]?x+" / "+labels[x]:x;
 const $=id=>document.getElementById(id);
 const library=await (await fetch('./library.json')).json(), mapping=structuredClone(library.mapping);
-const scene=new T.Scene();scene.background=new T.Color('#e2e6eb');
+const scene=new T.Scene();scene.background=new T.Color('#fffaf5');
 const camera=new T.PerspectiveCamera(34,1,.01,20);camera.position.set(0,.31,1.15);
-const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.setClearColor('#e2e6eb');$('view').prepend(renderer.domElement);
+const renderer=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.setClearColor('#fffaf5');$('view').prepend(renderer.domElement);
 const controls=new OrbitControls(camera,renderer.domElement);controls.target.set(0,.24,0);controls.enableDamping=true;controls.minDistance=.5;controls.maxDistance=2.2;controls.maxPolarAngle=Math.PI*.49;
-scene.add(new T.HemisphereLight(0xffffff,0x748773,2.6));const light=new T.DirectionalLight(0xfff5df,3);light.position.set(.6,1,1);light.castShadow=true;light.shadow.mapSize.set(2048,2048);light.shadow.camera.left=-.8;light.shadow.camera.right=.8;light.shadow.camera.top=.8;light.shadow.camera.bottom=-.8;light.shadow.normalBias=.002;scene.add(light);
+scene.add(new T.HemisphereLight(0xffffff,0xc4c8cd,2.0));const light=new T.DirectionalLight(0xffffff,2.0);light.position.set(.6,1,1);light.castShadow=true;light.shadow.mapSize.set(2048,2048);light.shadow.camera.left=-.8;light.shadow.camera.right=.8;light.shadow.camera.top=.8;light.shadow.camera.bottom=-.8;light.shadow.normalBias=.002;scene.add(light);
 const {root:robot,joints}=createRobot(scene);
 const material=c=>new T.MeshStandardMaterial({color:c,roughness:.85});
-const floor=new T.Mesh(new T.PlaneGeometry(20,20),material('#d2d7dd'));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
-const grid=new T.GridHelper(1.5,30,0x8c9daf,0xbdc5cf);grid.position.y=.001;scene.add(grid);
+const floor=new T.Mesh(new T.PlaneGeometry(20,20),material('#f4ece3'));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+const grid=new T.GridHelper(1.5,30,0xccb49e,0xe4d5c6);grid.position.y=.001;scene.add(grid);
 const resize=new ResizeObserver(()=>{const w=$('view').clientWidth,h=$('view').clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();});resize.observe($('view'));
 let current=library.actions[0],time=0,playing=false,last=performance.now(),lastFrame=-1,audioInstance=null,run=crypto.randomUUID(),sequence=0,seen=new Set();
 let log=[];const note=(status,extra={})=>{log.push({schema:'duck-sim-playback/v1',mode:'simulation_only',hardware_executed:false,simulation_run_id:run,status,...extra});};
@@ -43,4 +43,5 @@ options();choose(current);updateMappingControls();
 window.studio={label,library,sample,seek,choose,acceptEvent,get current(){return current},addAction(a){library.actions.push(a);$('search').value='';choose(a);options();},get state(){return {time,playing,action:current.name,run,sequence,log,pose:sample(current,time).pose}},renderer,scene};
 function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(playing){time=Math.min(current.duration,time+dt*Number($('speed').value));drawPose();if(time>=current.duration){playing=false;stopAudio();$('play').textContent='运行 / Play';note('completed',{action:current.name});drawPose();}}controls.update();renderer.render(scene,camera);requestAnimationFrame(tick);}requestAnimationFrame(tick);
 
-await import('./editor.js?v=3');
+await import('./editor.js?v=4');
+
