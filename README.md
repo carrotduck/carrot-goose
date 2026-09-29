@@ -6,7 +6,7 @@ Carrot Goose is a TonyPi robot project exploring how gestures accompany conversa
 
 ![Carrot Goose motion workbench](docs/workbench.png)
 
-[From servo programming to motion rehearsal](https://carrotgoose.online/project.html) explains the workbench’s role in the project.
+[Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process. The recorded robot demonstration predates the current browser workbench.
 
 ## Motion rehearsal
 
@@ -24,17 +24,15 @@ python tools/import_actions.py /path/to/ActionGroups
 
 The importer reads all servo channels in each `.d6a` file. The current 3D model animates six arm channels and two head channels; the remaining values stay in the imported data. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
 
-## Conversation and physical expression
+## Robot project
 
-The demonstration follows three moments: attention, a playful reply and an invitation to hug. Webpage dialogue cues advance an authored sequence. The local robot controller executes movements and returns completion or interruption feedback. Short voice cues play through the robot's attached audio device.
+The recorded demonstration connects webpage dialogue cues to an authored sequence of attention, a playful reply and an invitation to hug. The local controller returns completion or interruption feedback, while short voice cues play through the attached audio device.
 
-![Conversation and physical execution](docs/diagrams/architecture.svg)
-
-The browser workbench supports a separate authoring workflow: import or describe a motion, inspect the model, revise frame targets and save the sequence. Physical rehearsal follows a reviewed handoff to the device controller.
-
-![Motion authoring and physical review](docs/diagrams/workflow.svg)
-
-The project includes [motion and perception modules](docs/robot.md), [dialogue integration](docs/integration.md), and an [expressive performance score](docs/performance.md). The [project study](docs/project.md) explains the design question and the proposed timing comparison.
+| Component | Documentation |
+| --- | --- |
+| Motion and perception | [Robot modules](docs/robot.md) |
+| Conversation connection | [Carrot Duck integration](docs/integration.md) |
+| Dialogue and gesture sequence | [Performance score](docs/performance.md) |
 
 ## Run
 

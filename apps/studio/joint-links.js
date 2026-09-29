@@ -6,12 +6,24 @@ const entries=Object.entries(s.joints).map(([id,joint])=>{
  const line=document.createElementNS(ns,'path'),dot=document.createElementNS(ns,'circle');line.setAttribute('class','joint-link');dot.setAttribute('class','joint-dot');dot.setAttribute('r','3');svg.append(line,dot);
  const card=document.querySelector('.servo-'+id);
  const activate=()=>{active=id;document.querySelectorAll('.servo-card').forEach(el=>el.classList.toggle('active',el===card));};card.addEventListener('pointerdown',activate);card.addEventListener('focusin',activate);document.getElementById('edit-'+id).addEventListener('focus',activate);
- return {id,joint,line,dot,card};
+ let behind=null;
+ if(['pitch','yaw'].includes(id)){
+  behind=new T.Line(new T.BufferGeometry(),new T.LineDashedMaterial({color:0xe89032,dashSize:.004,gapSize:.003,depthTest:true,depthWrite:false}));behind.name='head-link-'+id;s.scene.add(behind);line.style.display=dot.style.display='none';
+ }
+ return {id,joint,line,dot,card,behind};
 });
 function tick(){
  s.scene.updateMatrixWorld(true);s.camera.updateMatrixWorld(true);
  const rect=view.getBoundingClientRect();
- for(const {id,joint,line,dot,card} of entries){
+ for(const {id,joint,line,dot,card,behind} of entries){
+  if(behind){
+   const end=joint.localToWorld(new T.Vector3(0,0,-.035));const depth=end.clone().project(s.camera).z,cr=card.getBoundingClientRect();
+   const x=(cr.left+cr.width/2-rect.left)/rect.width*2-1,y=1-(cr.bottom-rect.top)/rect.height*2;
+   const start=new T.Vector3(x,y,depth).unproject(s.camera);
+   const shoulder=new T.Vector3(id==='pitch'?-.052:.052,.46,-.065);
+   behind.geometry.dispose();behind.geometry=new T.BufferGeometry().setFromPoints([start,shoulder,end]);behind.computeLineDistances();
+   continue;
+  }
   const p=joint.localToWorld(new T.Vector3(0,['7','15'].includes(id)?-.036:0,.027)).project(s.camera),cr=card.getBoundingClientRect();
   const x=(p.x+1)*rect.width/2,y=(1-p.y)*rect.height/2;
   const left=cr.left+cr.width/2<rect.left+rect.width/2;

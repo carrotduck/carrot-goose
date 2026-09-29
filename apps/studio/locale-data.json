@@ -295,5 +295,7 @@
   "Offset must be between -125 and 125": "偏差须介于 -125 到 125",
   "Model offset · Save mapping to export": "模型偏差 · 保存映射可导出",
   "Carrot Duck LLM": "鸭鸭语言模型",
-  "The planner receives your request and current sequence, then returns editable frames.": "规划器接收动作描述与当前序列，返回可编辑的动作帧。"
+  "The planner receives your request and current sequence, then returns editable frames.": "规划器接收动作描述与当前序列，返回可编辑的动作帧。",
+  "Joint values": "关节数值",
+  "Selected frame": "选中帧"
 }
