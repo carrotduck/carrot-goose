@@ -1,0 +1,861 @@
+{
+  "schema_version": "tonypi-action-registry/v1",
+  "registry_version": "1.5.1",
+  "updated_at": "2026-07-21",
+  "policy": {
+    "default_deny": true,
+    "canonical_names_only_on_device": true,
+    "aliases_resolve_on_server_only": true,
+    "registry_mismatch_behavior": "stop_status_only"
+  },
+  "coordinate_frames": {
+    "gaze": "tonypi_body",
+    "camera": "camera_image"
+  },
+  "legacy_aliases": {
+    "hugg": {
+      "canonical": "hug",
+      "status": "deprecated"
+    },
+    "hug!!": {
+      "canonical": "hug",
+      "status": "implementation_name"
+    },
+    "tonypi_hug": {
+      "canonical": "hug",
+      "status": "deprecated"
+    },
+    "wave": {
+      "canonical": "happy_wave",
+      "status": "deprecated"
+    },
+    "wave!!": {
+      "canonical": "happy_wave",
+      "status": "implementation_name"
+    },
+    "happy": {
+      "canonical": "happy_wave",
+      "status": "deprecated"
+    },
+    "listen_idle": {
+      "canonical": "wings_open",
+      "status": "deprecated"
+    },
+    "body_sway": {
+      "canonical": "happy_twist",
+      "status": "deprecated"
+    },
+    "twist": {
+      "canonical": "happy_twist",
+      "status": "implementation_name"
+    },
+    "shy": {
+      "canonical": "shy_wave",
+      "status": "deprecated_but_blocked"
+    },
+    "goodnight": {
+      "canonical": null,
+      "status": "blocked_unmapped"
+    },
+    "nod": {
+      "canonical": null,
+      "status": "blocked_missing_action"
+    },
+    "bow": {
+      "canonical": null,
+      "status": "blocked_unverified"
+    },
+    "arms_down": {
+      "canonical": null,
+      "status": "blocked_retired"
+    }
+  },
+  "actions": [
+    {
+      "name": "hug",
+      "description": "Full two-arm hug recorded by the user.",
+      "implementation": {
+        "kind": "d6a",
+        "target": "hug!!"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 10000,
+      "timeout_ms": 7000,
+      "return_policy": "none",
+      "final_pose": "d6a_end_unverified"
+    },
+    {
+      "name": "happy_wave",
+      "description": "User-recorded cheerful two-arm wave.",
+      "implementation": {
+        "kind": "d6a",
+        "target": "wave!!"
+      },
+      "verified": true,
+      "verification_level": "physical_and_receipt",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 6000,
+      "timeout_ms": 5000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "hands_ready",
+      "description": "Small verified arm lift used as a quiet ready pose.",
+      "implementation": {
+        "kind": "code",
+        "target": "hands_ready"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 4000,
+      "timeout_ms": 2500,
+      "return_policy": "hold",
+      "final_pose": "hands_ready_hold"
+    },
+    {
+      "name": "wings_open",
+      "description": "Fully opens both arms and holds the pose.",
+      "implementation": {
+        "kind": "code",
+        "target": "wings_open"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 10000,
+      "timeout_ms": 3000,
+      "return_policy": "hold",
+      "final_pose": "wings_open_hold"
+    },
+    {
+      "name": "return_idle",
+      "description": "Returns both arms to the verified natural idle pose.",
+      "implementation": {
+        "kind": "code",
+        "target": "return_idle"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 0,
+      "timeout_ms": 3000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "happy_wiggle",
+      "description": "Legacy code-based cheerful upper-body wiggle.",
+      "implementation": {
+        "kind": "code",
+        "target": "happy_wiggle"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 6000,
+      "timeout_ms": 6000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "happy_twist",
+      "description": "Leg-bending body sway backed by twist.d6a.",
+      "implementation": {
+        "kind": "d6a",
+        "target": "twist"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "blocked_unless_supervised",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms", "legs"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 15000,
+      "timeout_ms": 7000,
+      "return_policy": "idle",
+      "final_pose": "d6a_default_stance_unverified"
+    },
+    {
+      "name": "soft_hug",
+      "description": "Experimental code-based soft hug awaiting calibration.",
+      "implementation": {
+        "kind": "code",
+        "target": "soft_hug"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "blocked_unless_supervised",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 10000,
+      "timeout_ms": 6000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "shy_wave",
+      "description": "Experimental small right-arm wave awaiting physical verification.",
+      "implementation": {
+        "kind": "code",
+        "target": "shy_wave"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "blocked_unless_supervised",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["right_arm"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 6000,
+      "timeout_ms": 5000,
+      "return_policy": "idle",
+      "final_pose": "right_arm_idle"
+    },
+    {
+      "name": "want_attention",
+      "description": "Experimental two-pulse right-arm attention gesture.",
+      "implementation": {
+        "kind": "code",
+        "target": "want_attention"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "blocked_unless_supervised",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["right_arm"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 6000,
+      "timeout_ms": 5000,
+      "return_policy": "idle",
+      "final_pose": "right_arm_idle"
+    },
+    {
+      "name": "gaze_center",
+      "description": "Returns the head to the verified center pose.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_center"
+      },
+      "verified": true,
+      "verification_level": "physical_and_receipt",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 0,
+      "timeout_ms": 2500,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "gaze_left",
+      "description": "Static approximately ten-degree look to TonyPi's left.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_left"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 1500,
+      "timeout_ms": 2500,
+      "return_policy": "hold",
+      "final_pose": "left"
+    },
+    {
+      "name": "gaze_right",
+      "description": "Static approximately ten-degree look to TonyPi's right.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_right"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 1500,
+      "timeout_ms": 2500,
+      "return_policy": "hold",
+      "final_pose": "right"
+    },
+    {
+      "name": "gaze_up",
+      "description": "Static approximately ten-degree upward look.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_up"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 1500,
+      "timeout_ms": 2500,
+      "return_policy": "hold",
+      "final_pose": "up"
+    },
+    {
+      "name": "gaze_down",
+      "description": "Static approximately ten-degree downward look.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_down"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 1500,
+      "timeout_ms": 2500,
+      "return_policy": "hold",
+      "final_pose": "down"
+    },
+    {
+      "name": "gaze_glance_left",
+      "description": "Natural six-degree glance left with guaranteed center return.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_glance_left"
+      },
+      "verified": true,
+      "verification_level": "physical_and_receipt",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "allowed",
+      "requires_supervision": false,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 3000,
+      "timeout_ms": 3500,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "gaze_glance_right",
+      "description": "Six-degree glance right with center return; awaiting direct acceptance.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_glance_right"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 3000,
+      "timeout_ms": 3500,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "gaze_glance_up",
+      "description": "Six-degree glance up with center return; awaiting direct acceptance.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_glance_up"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 3000,
+      "timeout_ms": 3500,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "gaze_glance_down",
+      "description": "Six-degree glance down with center return; awaiting direct acceptance.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_glance_down"
+      },
+      "verified": false,
+      "verification_level": "source_only",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0.35,
+            "maximum": 1.0
+          }
+        },
+        "additionalProperties": false
+      },
+      "cooldown_ms": 3000,
+      "timeout_ms": 3500,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "seek_user",
+      "description": "Bounded local face seek with safe left/right gaze limits and mandatory center return.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "seek_user"
+      },
+      "verified": true,
+      "verification_level": "physical_and_receipt",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze", "camera"],
+      "uses": ["head", "camera"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 30000,
+      "timeout_ms": 15000,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "track_face_brief",
+      "description": "Supervised bounded local face tracking for up to eight seconds with fixed safe gaze limits and mandatory center return.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "track_face_brief"
+      },
+      "verified": true,
+      "verification_level": "physical_and_receipt_including_running_stop",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["gaze", "camera"],
+      "uses": ["head", "camera"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 30000,
+      "timeout_ms": 15000,
+      "return_policy": "center",
+      "final_pose": "center"
+    },
+    {
+      "name": "observe_gesture_once",
+      "description": "Read-only local hand gesture observation with no body or gaze motion dispatch.",
+      "implementation": {
+        "kind": "perception",
+        "target": "observe_gesture_once"
+      },
+      "verified": true,
+      "verification_level": "supervised_physical_acceptance_with_emergency_stop",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["camera"],
+      "uses": ["camera"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 10000,
+      "timeout_ms": 8000,
+      "return_policy": "none",
+      "final_pose": null
+    },
+    {
+      "name": "startup_recover",
+      "description": "Supervised full-body recovery to the verified startup base pose after battery, ownership and upright IMU checks.",
+      "implementation": {
+        "kind": "code",
+        "target": "startup_recover"
+      },
+      "verified": true,
+      "verification_level": "supervised_physical_acceptance",
+      "exposure": "remote",
+      "safety_tier": "careful",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body", "gaze"],
+      "uses": ["arms", "legs"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 60000,
+      "timeout_ms": 8000,
+      "return_policy": "idle",
+      "final_pose": "full_idle"
+    },
+    {
+      "name": "quiet_acknowledge_low",
+      "description": "Acceptance-only low-intensity arm acknowledgement with continuous idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "quiet_acknowledge_low"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 4000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "quiet_acknowledge_medium",
+      "description": "Acceptance-only medium-intensity arm acknowledgement with continuous idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "quiet_acknowledge_medium"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 4000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "quiet_acknowledge_high",
+      "description": "Acceptance-only high-intensity arm acknowledgement with continuous idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "quiet_acknowledge_high"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 4000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "happy_greeting_low",
+      "description": "Acceptance-only low-intensity continuous happy greeting with idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "happy_greeting_low"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 6000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "happy_greeting_medium",
+      "description": "Acceptance-only medium-intensity continuous happy greeting with idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "happy_greeting_medium"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 6000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "happy_greeting_high",
+      "description": "Acceptance-only high-intensity continuous happy greeting with idle return.",
+      "implementation": {
+        "kind": "code",
+        "target": "happy_greeting_high"
+      },
+      "verified": false,
+      "verification_level": "offline_kinematic_candidate",
+      "exposure": "remote",
+      "safety_tier": "safe_desktop",
+      "autonomy": "supervised",
+      "requires_supervision": true,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 2500,
+      "timeout_ms": 6000,
+      "return_policy": "idle",
+      "final_pose": "return_idle"
+    },
+    {
+      "name": "read_arm_positions",
+      "description": "Internal read-only arm position diagnostic.",
+      "implementation": {
+        "kind": "code",
+        "target": "read_arm_positions"
+      },
+      "verified": true,
+      "verification_level": "source_only",
+      "exposure": "internal",
+      "safety_tier": "safe_desktop",
+      "autonomy": "blocked",
+      "requires_supervision": false,
+      "resources": ["body"],
+      "uses": ["arms"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 0,
+      "timeout_ms": 5000,
+      "return_policy": "none",
+      "final_pose": null
+    },
+    {
+      "name": "gaze_safe_cycle",
+      "description": "Internal diagnostic cycle covering four gaze directions and center return.",
+      "implementation": {
+        "kind": "gaze",
+        "target": "gaze_safe_cycle"
+      },
+      "verified": true,
+      "verification_level": "physical",
+      "exposure": "internal",
+      "safety_tier": "safe_desktop",
+      "autonomy": "blocked",
+      "requires_supervision": true,
+      "resources": ["gaze"],
+      "uses": ["head"],
+      "parameters_schema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "cooldown_ms": 0,
+      "timeout_ms": 15000,
+      "return_policy": "center",
+      "final_pose": "center"
+    }
+  ]
+}
