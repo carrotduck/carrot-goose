@@ -1,0 +1,53 @@
+{
+  "robot/rehearsal/body_sway.py": {
+    "sha256": "138c46e5a16a6630cbac4cab45eec18005e5a3b9a7a7cba1be53e8d77c66c457"
+  },
+  "robot/rehearsal/full_scene_candidate.json": {
+    "sha256": "bb54e8ad3ce333a32afc707b2b1159caae920efa6d5cd8f52cc7a682f0e58ad4"
+  },
+  "robot/rehearsal/guarded_invitation.py": {
+    "sha256": "b0bfa947811b4930a635a54417729312d31d1898a1479bbf68093adab6657c57"
+  },
+  "robot/rehearsal/live_gaze.py": {
+    "sha256": "bf2a6d169e7413565659be88295a988985b303564f1510b0b251c499441511e6"
+  },
+  "robot/rehearsal/rehearsal_listener.py": {
+    "sha256": "2b359ef55bf2101fc88732b80fe569d91557f9f4fb63372d4217f52485f3aa99"
+  },
+  "robot/rehearsal/run_scene_take.py": {
+    "sha256": "e8e5449ac02f439bfed5db871d5f3bc47a3f87cf099b0d712d7ee3cf80c9ec15"
+  },
+  "robot/rehearsal/scene_camera.py": {
+    "sha256": "32cd620ae825fb4e8310c7a262db8018b8401e76211280508964405768a4bcc2"
+  },
+  "robot/rehearsal/scene_hardware.py": {
+    "sha256": "2a824238571a214176921dbc2d72a5c6ae2f1d957fdc73497313380c60311481"
+  },
+  "robot/rehearsal/scene_sequence.py": {
+    "sha256": "d0fbc525a84a858cafcc3ec42711d8bac7472bca8836da8fdc3792a652367770"
+  },
+  "robot/rehearsal/scene_transport.py": {
+    "sha256": "a22cb50b25b50610e4546c1e5abc0031246b76c9192d42512b5dc5290a183d52"
+  },
+  "robot/rehearsal/test_guarded_invitation.py": {
+    "sha256": "5fe527ffaf671415f80157e1c5c5b96ed2e6a4418c81a8a1f6878ac401163825"
+  },
+  "robot/rehearsal/test_scene_diagnostics.py": {
+    "sha256": "cd874d3733570ac311c96be59ba5a870a5c425328c94c91194c11dc3e82b5a95"
+  },
+  "robot/rehearsal/test_scene_hardware.py": {
+    "sha256": "04dcc3ac82fbd2e8ee34e60777cdc825ca1394f5b81d0d722e030801040abe17"
+  },
+  "robot/rehearsal/test_scene_sdk_parity.py": {
+    "sha256": "a09619fe72026d386d8806c7acda50a0bfee62e265098d15d019fb2cfd7f0996"
+  },
+  "robot/rehearsal/test_scene_sequence.py": {
+    "sha256": "53bcb391633fabb2347b3a434b105715f13900dff0b52b85793d73c17df21193"
+  },
+  "robot/rehearsal/test_scene_transport.py": {
+    "sha256": "668d04e35d0dafba67c7cede775547d7f124097403683a0e46a4a06d48beec5e"
+  },
+  "robot/rehearsal/thermal_sample.py": {
+    "sha256": "364e32e08c706c604414d5b17fc438a79e070aea504b3d5076c82fdd15f0273b"
+  }
+}

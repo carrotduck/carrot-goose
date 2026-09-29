@@ -18,3 +18,8 @@ unreal/DerivedDataCache/
 unreal/Content/Sequences/
 unreal/Content/Materials/
 unreal/Content/*.umap
+
+secrets.env
+.scene-session.json
+*.jsonl
+robot/rehearsal/audio/*.wav

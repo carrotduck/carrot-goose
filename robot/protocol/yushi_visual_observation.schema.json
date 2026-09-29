@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://memory.bingyu.online/protocol/yushi-visual-observation.schema.json",
+  "title": "Yushi Visual Observation V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "person_present",
+    "scene_summary",
+    "grounded_observations",
+    "activity",
+    "attention_direction",
+    "body_posture",
+    "embodied_glimpse",
+    "uncertainty",
+    "confidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "yushi-visual-observation/v2"
+    },
+    "person_present": {
+      "type": "boolean"
+    },
+    "scene_summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "grounded_observations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      }
+    },
+    "activity": {
+      "type": "string",
+      "enum": [
+        "using_computer",
+        "using_phone",
+        "reading",
+        "writing",
+        "gaming",
+        "watching_video",
+        "resting",
+        "sleeping",
+        "eating",
+        "talking",
+        "crafting",
+        "moving",
+        "away",
+        "unknown"
+      ]
+    },
+    "attention_direction": {
+      "type": "string",
+      "enum": [
+        "screen",
+        "phone",
+        "book",
+        "camera",
+        "room",
+        "away",
+        "unknown"
+      ]
+    },
+    "body_posture": {
+      "type": "string",
+      "enum": [
+        "sitting",
+        "standing",
+        "lying",
+        "moving",
+        "partially_visible",
+        "unknown"
+      ]
+    },
+    "embodied_glimpse": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 180
+    },
+    "uncertainty": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}

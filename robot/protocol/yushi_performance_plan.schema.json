@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://memory.bingyu.online/protocol/yushi-performance-plan-v1.schema.json",
+  "title": "Yushi Performance Plan V1",
+  "description": "Server-compiled performance plan. Robot command IDs are generated only when a command spec is dispatched.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "plan_id",
+    "state",
+    "source",
+    "created_at",
+    "expires_at",
+    "affective_tone",
+    "expressive_intensity",
+    "text_targets",
+    "audio_owner",
+    "utterance",
+    "web",
+    "robot_command_specs",
+    "after_result"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "yushi-performance-plan/v1"
+    },
+    "plan_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "parent_plan_id": {
+      "type": ["string", "null"],
+      "maxLength": 128
+    },
+    "caused_by_receipt_id": {
+      "type": ["string", "null"],
+      "maxLength": 256
+    },
+    "state": {
+      "enum": [
+        "planned",
+        "dispatched",
+        "acknowledged",
+        "started",
+        "awaiting_result",
+        "completed",
+        "degraded",
+        "failed",
+        "cancelled",
+        "expired",
+        "closed_silent"
+      ]
+    },
+    "source": {
+      "enum": [
+        "main_chat",
+        "group_chat",
+        "keepalive",
+        "voice_call",
+        "hourly_arbitrator",
+        "user_command",
+        "safety"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "interpersonal_target": {
+      "type": ["string", "null"],
+      "maxLength": 128,
+      "description": "Server-only relationship target. The compiler must remove this field before building a TonyPi command."
+    },
+    "affective_tone": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "expressive_intensity": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "text_targets": {
+      "type": "array",
+      "items": {
+        "enum": ["main_chat", "group_chat", "keepalive", "note"]
+      },
+      "uniqueItems": true
+    },
+    "audio_owner": {
+      "enum": ["web", "robot", "none"]
+    },
+    "utterance": {
+      "type": ["string", "null"],
+      "maxLength": 2000
+    },
+    "web": {
+      "type": "object",
+      "required": ["mood", "duration_ms", "return_policy"],
+      "properties": {
+        "mood": {
+          "enum": ["neutral", "spark", "close", "moonroom", "hollow", "overheat", "off"]
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 300000
+        },
+        "return_policy": {
+          "enum": ["base", "previous", "off"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "robot_command_specs": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "command_spec_id",
+          "performance_phase",
+          "action",
+          "parameters",
+          "registry_version",
+          "registry_sha256",
+          "resource_claims",
+          "timeout_ms",
+          "return_policy",
+          "expected_final_pose",
+          "required"
+        ],
+        "properties": {
+          "command_spec_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "performance_phase": {
+            "enum": ["expression", "seek", "observe", "follow_up", "recovery", "safety"]
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "parameters": {
+            "type": "object"
+          },
+          "registry_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "registry_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "resource_claims": {
+            "type": "array",
+            "items": {
+              "enum": ["body", "gaze", "camera", "audio"]
+            },
+            "uniqueItems": true
+          },
+          "timeout_ms": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 120000
+          },
+          "return_policy": {
+            "enum": ["center", "idle", "hold", "none"]
+          },
+          "expected_final_pose": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "dispatch_after_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 30000
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "after_result": {
+      "enum": ["silent", "decide"]
+    }
+  },
+  "additionalProperties": false
+}

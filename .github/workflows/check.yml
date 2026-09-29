@@ -14,5 +14,8 @@ jobs:
           python-version: '3.12'
       - run: npm ci
       - run: npm test
+      - run: pip install -r robot/requirements.txt
       - run: python -m unittest discover -s robot -p 'test_*.py'
       - run: python -m unittest discover -s tests -p 'test_*.py'
+
+      - run: python -m unittest discover -s robot/rehearsal -p "test_*.py"

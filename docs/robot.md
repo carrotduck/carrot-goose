@@ -19,4 +19,4 @@ Run the Python tests from the repository root with `python -m unittest discover 
 
 There are different historical left/right conventions in the physical catalog and browser model. Use servo IDs when comparing them, and calibrate each axis on the actual robot before connecting exported poses to an executor. A range observed in an action is not a mechanical limit.
 
-The full device service, personal connection settings and original action-file backups are maintained outside this repository. The public modules provide the motion and perception components used by that service.
+The device client is included as `robot/yushi_client.py`; the scene runner and webpage transport are in `robot/rehearsal`. See [rehearsal setup](rehearsal.md). Personal connection settings and original manufacturer action backups are excluded.

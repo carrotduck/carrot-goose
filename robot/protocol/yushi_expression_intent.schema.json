@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://memory.bingyu.online/protocol/yushi-expression-intent-v1.schema.json",
+  "title": "Yushi Expression Intent V1",
+  "description": "Model-authored semantic intent. It contains no device IDs, PWM values, registry facts, locks, timeouts or command IDs.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "utterance_candidate",
+    "affective_tone",
+    "expressive_intensity",
+    "desired_outlets",
+    "body_expression_intent",
+    "gaze_intent",
+    "observe_level",
+    "after_result"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "yushi-expression-intent/v1"
+    },
+    "utterance_candidate": {
+      "type": ["string", "null"],
+      "maxLength": 1200
+    },
+    "affective_tone": {
+      "enum": [
+        "neutral",
+        "warm",
+        "playful",
+        "bright",
+        "close",
+        "quiet",
+        "hollow",
+        "tense",
+        "overheat"
+      ]
+    },
+    "expressive_intensity": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "desired_outlets": {
+      "type": "array",
+      "items": {
+        "enum": ["text", "audio", "web_mood", "body", "gaze", "observe"]
+      },
+      "uniqueItems": true,
+      "maxItems": 6
+    },
+    "body_expression_intent": {
+      "enum": [
+        "none",
+        "greet",
+        "delight",
+        "open_arms",
+        "attention",
+        "comfort",
+        "settle"
+      ]
+    },
+    "gaze_intent": {
+      "enum": ["none", "glance", "seek", "track"]
+    },
+    "observe_level": {
+      "enum": ["none", "presence_only", "activity_once"]
+    },
+    "after_result": {
+      "enum": ["silent", "decide"]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,881 @@
+{
+  "schema": "yushi-full-scene-candidate/v1",
+  "hardware_commissioned": false,
+  "mode": "offline_candidate",
+  "steps": [
+    {
+      "id": "phase_00",
+      "label": "复原到起点 · 安静待机",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1500,
+        "yaw": 1530
+      },
+      "move_s": 2.4,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_01",
+      "label": "你靠近 · 转向你",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1519,
+        "yaw": 1578
+      },
+      "move_s": 0.9,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_02",
+      "label": "手指向左 · 双手安静",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1476,
+        "yaw": 1415
+      },
+      "move_s": 0.9,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_03",
+      "label": "手指向右",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1476,
+        "yaw": 1645
+      },
+      "move_s": 1,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_04",
+      "label": "手指向上",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1564,
+        "yaw": 1597
+      },
+      "move_s": 0.9,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_05",
+      "label": "手指向下",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0.9,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_06",
+      "label": "手停 · 视线停在手上",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0,
+      "hold_s": 0.8,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": "Mm?",
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_07",
+      "label": "看向你的脸",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.65,
+      "hold_s": 0.1,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_08",
+      "label": "再看看你的手",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0.65,
+      "hold_s": 0.1,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_09",
+      "label": "又看向你",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.65,
+      "hold_s": 0.1,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_10",
+      "label": "再看手 · 低头等你",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0.65,
+      "hold_s": 0.1,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_11",
+      "label": "你的第一句文字",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0,
+      "hold_s": 0.15,
+      "gate": "happy_reply",
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_12",
+      "label": "不告诉你 · 文字先出现",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0,
+      "hold_s": 0.8,
+      "gate": "happy_reply",
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_13",
+      "label": "轻轻点头 · 低下",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1400,
+        "yaw": 1568
+      },
+      "move_s": 0.5,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_14",
+      "label": "点头以后 · 抬头看你",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.7,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_15",
+      "label": "让开心停留一下",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0,
+      "hold_s": 0.55,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_16",
+      "label": "Cheer · 双臂前抬与点头摇摆",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1520,
+        "yaw": 1530
+      },
+      "move_s": 0.8,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "compact_happy_candidate_no_leg_motion",
+      "head_source": "preset_direction_not_face_or_hand_detection",
+      "happy_sequence": [
+        {
+          "arms": {
+            "6": 545,
+            "7": 803,
+            "8": 610,
+            "14": 415,
+            "15": 200,
+            "16": 355
+          },
+          "head": {
+            "pitch": 1460,
+            "yaw": 1450
+          },
+          "move_s": 0.9,
+          "hold_s": 0.12
+        },
+        {
+          "arms": {
+            "6": 545,
+            "7": 803,
+            "8": 650,
+            "14": 415,
+            "15": 200,
+            "16": 315
+          },
+          "head": {
+            "pitch": 1580,
+            "yaw": 1620
+          },
+          "move_s": 0.9,
+          "hold_s": 0.12
+        },
+        {
+          "arms": {
+            "6": 545,
+            "7": 803,
+            "8": 610,
+            "14": 415,
+            "15": 200,
+            "16": 355
+          },
+          "head": {
+            "pitch": 1460,
+            "yaw": 1460
+          },
+          "move_s": 0.9,
+          "hold_s": 0.12
+        },
+        {
+          "arms": {
+            "6": 545,
+            "7": 803,
+            "8": 650,
+            "14": 415,
+            "15": 200,
+            "16": 315
+          },
+          "head": {
+            "pitch": 1580,
+            "yaw": 1610
+          },
+          "move_s": 0.9,
+          "hold_s": 0.12
+        },
+        {
+          "arms": {
+            "6": 535,
+            "7": 803,
+            "8": 690,
+            "14": 425,
+            "15": 200,
+            "16": 275
+          },
+          "head": {
+            "pitch": 1520,
+            "yaw": 1530
+          },
+          "move_s": 1.1,
+          "hold_s": 0.25
+        }
+      ]
+    },
+    {
+      "id": "phase_17",
+      "label": "再看你 · 等你的手移开",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.7,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_18",
+      "label": "手指已移开 · 注意到离开",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1452,
+        "yaw": 1597
+      },
+      "move_s": 0.5,
+      "hold_s": 0,
+      "gate": "hand_withdrawn",
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_19",
+      "label": "第一次轻轻抬手",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 399,
+        "15": 204,
+        "16": 401
+      },
+      "head": {
+        "pitch": 1468,
+        "yaw": 1578
+      },
+      "move_s": 1.6,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_20",
+      "label": "犹豫 · 缩回一点",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 412,
+        "15": 202,
+        "16": 338
+      },
+      "head": {
+        "pitch": 1460,
+        "yaw": 1578
+      },
+      "move_s": 1.2,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_21",
+      "label": "Hey · 看向你的脸",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 412,
+        "15": 202,
+        "16": 338
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.6,
+      "hold_s": 0.1,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": "Hey.",
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_22",
+      "label": "再看你的手 · 决定邀请",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 412,
+        "15": 202,
+        "16": 338
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 0.65,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_23",
+      "label": "第二次邀请 · 胸前停住",
+      "arms": {
+        "6": 614,
+        "7": 813,
+        "8": 597,
+        "14": 399,
+        "15": 204,
+        "16": 401
+      },
+      "head": {
+        "pitch": 1428,
+        "yaw": 1597
+      },
+      "move_s": 1.5,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "new_blended_or_hug_entry_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_24",
+      "label": "坚定地等你 · 看手再看脸",
+      "arms": {
+        "6": 614,
+        "7": 813,
+        "8": 597,
+        "14": 399,
+        "15": 204,
+        "16": 401
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0.7,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "new_blended_or_hug_entry_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_25",
+      "label": "你的第二句文字",
+      "arms": {
+        "6": 614,
+        "7": 813,
+        "8": 597,
+        "14": 399,
+        "15": 204,
+        "16": 401
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0,
+      "hold_s": 0.15,
+      "gate": "hug_reply",
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "new_blended_or_hug_entry_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_26",
+      "label": "拥抱回复出现 · 保持邀请",
+      "arms": {
+        "6": 614,
+        "7": 813,
+        "8": 597,
+        "14": 399,
+        "15": 204,
+        "16": 401
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0,
+      "hold_s": 0.5,
+      "gate": "hug_reply",
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "new_blended_or_hug_entry_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_27",
+      "label": "双臂向前 · 邀请拥抱",
+      "arms": {
+        "6": 545,
+        "7": 777,
+        "8": 610,
+        "14": 415,
+        "15": 246,
+        "16": 355
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 1.8,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "compact_care_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection",
+      "care_sequence": [
+        {
+          "arms": {
+            "6": 614,
+            "7": 777,
+            "8": 597,
+            "14": 399,
+            "15": 246,
+            "16": 401
+          },
+          "move_s": 1.8,
+          "hold_s": 0.2
+        },
+        {
+          "arms": {
+            "6": 545,
+            "7": 777,
+            "8": 650,
+            "14": 415,
+            "15": 246,
+            "16": 315
+          },
+          "move_s": 3.0,
+          "hold_s": 0.2
+        },
+        {
+          "arms": {
+            "6": 545,
+            "7": 777,
+            "8": 610,
+            "14": 415,
+            "15": 246,
+            "16": 355
+          },
+          "move_s": 1.6,
+          "hold_s": 0.2
+        }
+      ]
+    },
+    {
+      "id": "phase_28",
+      "label": "一个不接触的拥抱 · 停留",
+      "arms": {
+        "6": 545,
+        "7": 777,
+        "8": 610,
+        "14": 415,
+        "15": 246,
+        "16": 355
+      },
+      "head": {
+        "pitch": 1524,
+        "yaw": 1530
+      },
+      "move_s": 0,
+      "hold_s": 1.5,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "compact_care_candidate",
+      "head_source": "preset_direction_not_face_or_hand_detection"
+    },
+    {
+      "id": "phase_29",
+      "label": "自然放下双臂",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1516,
+        "yaw": 1530
+      },
+      "move_s": 2.4,
+      "hold_s": 0,
+      "gate": null,
+      "wait_arms_raised": true,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection",
+      "side_clearance": true
+    },
+    {
+      "id": "phase_30",
+      "label": "拥抱后看向你 · 回到待机",
+      "arms": {
+        "6": 535,
+        "7": 803,
+        "8": 690,
+        "14": 425,
+        "15": 200,
+        "16": 275
+      },
+      "head": {
+        "pitch": 1500,
+        "yaw": 1530
+      },
+      "move_s": 0.7,
+      "hold_s": 0.3,
+      "gate": null,
+      "wait_arms_raised": false,
+      "utterance": null,
+      "physical_path_verified": false,
+      "arm_source": "recorded_arm_anchor",
+      "head_source": "preset_direction_not_face_or_hand_detection",
+      "face_before_center": true
+    }
+  ],
+  "limits": {
+    "max_average_bus_counts_per_second": 100,
+    "meaning": "planning_budget_not_safety_rating"
+  },
+  "revision": "compact_care_without_legacy_hug",
+  "unresolved": [
+    "compact_care_transitions_need_physical_confirmation"
+  ]
+}
