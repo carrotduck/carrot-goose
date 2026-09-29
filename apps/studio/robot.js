@@ -30,7 +30,6 @@ for(const y of [.346,.283,.254])screw(root,side*(y<.26?.047:.069),y,.04,.0018);}
  // Rear camera cable and low display, visible in the supplied rear view.
  wire(root,[[.063,.329,-.045],[.075,.346,-.074],[.012,.311,-.084],[-.055,.329,-.072],[-.026,.387,-.027]]);
  box(root,[0,.247,-.027],[.024,.012,.003],black);
- for(const side of [-1,1]){const rearLabel=label(root,'824HV',[side*.043,.12,-.021],.035,.022);rearLabel.rotation.y=Math.PI;wire(root,[[side*.043,.233,-.024],[side*.056,.191,-.047],[side*.044,.158,-.03],[side*.049,.094,-.025]]);}
  // Bracketed head: yaw ring, U bracket, tilting camera casing.
  cylinder(root,[0,.371,0],.016,.006,black).rotation.x=0;
  joints.yaw=group(root,'PWM2_yaw',[0,.378,0]);box(joints.yaw,[0,0,0],[.049,.004,.034]);for(const side of [-1,1]){const bracket=plate(joints.yaw,[side*.029,.018,0],.033,.044,[[0,.005,.003]]);bracket.rotation.y=Math.PI/2;}
@@ -62,12 +61,25 @@ box(joints.pitch,[0,-.027,.001],[.05,.007,.047],white);cylinder(joints.pitch,[0,
 
  }
  // Exposed hip/knee servos and folded leg brackets, with photographed broad feet.
- for(const side of [-1,1]){let x=side*.043;box(root,[x,.246,0],[.048,.029,.045],white);cylinder(root,[x,.248,.028],.007,.006,black);screw(root,x-side*.018,.248,.029,.002);
+ for(const side of [-1,1]){let x=side*.043;let start=root.children.length;box(root,[x,.246,0],[.048,.029,.045],white);cylinder(root,[x,.248,.028],.007,.006,black);screw(root,x-side*.018,.248,.029,.002);
+   const hipParts=root.children.slice(start);start=root.children.length;
    servo(root,[x,.209,.003],.047,.047);plate(root,[x,.179,.033],.055,.04);for(const side2 of [-1,1]){box(root,[x+side2*.028,.199,0],[.002,.075,.06]);for(const y of [.218,.167])screw(root,x+side2*.022,y,.034,.0017);}box(root,[x,.161,0],[.055,.003,.061]);cylinder(root,[x,.154,.033],.01,.004,black);screw(root,x-side*.018,.154,.035,.002);
+   const thighParts=root.children.slice(start);start=root.children.length;
    servo(root,[x,.116,.016],.048,.047);for(const side2 of [-1,1])box(root,[x+side2*.028,.115,.006],[.002,.064,.062]);box(root,[x,.083,.006],[.057,.002,.063]);box(root,[x,.075,0],[.055,.003,.061]);plate(root,[x,.053,.034],.053,.045,[[0,0,.006]]);for(const y of [.04,.066])screw(root,x,y,.037,.0025);cylinder(root,[x,.052,.037],.006,.003,black);
+   const shinParts=root.children.slice(start);start=root.children.length;
    const foot=polygon(root,[[-.04,-.045],[.04,-.045],[.04,.032],[.029,.051],[-.029,.051],[-.04,.032]],0);foot.rotation.x=-Math.PI/2;foot.position.set(x,.017,.018);
    for(const edge of [-1,1]){box(root,[x+edge*.039,.02,.012],[.0015,.011,.083]);screw(root,x+edge*.022,.021,.048,.0015);}servo(root,[x,.033,.009],.04,.022);
-box(root,[x,.01,.025],[.077,.005,.098],rubber);wire(root,[[x,.25,-.02],[x+side*.025,.17,-.024],[x,.081,-.029]]);
+box(root,[x,.01,.025],[.077,.005,.098],rubber);
+ const footParts=root.children.slice(start);
+ const ids=side===1?['5','4','3','2','1']:['13','12','11','10','9'];
+ const hinges=ids.map((id,i)=>{const g=group(root,'BUS_'+id,[x,[.246,.228,.154,.052,.033][i],0]);joints[id]=g;return g;});
+ root.updateMatrixWorld(true);
+ hipParts.forEach(m=>hinges[0].attach(m));thighParts.forEach(m=>hinges[1].attach(m));shinParts.forEach(m=>hinges[2].attach(m));footParts.forEach(m=>hinges[4].attach(m));
+ for(let i=4;i>0;i--)hinges[i-1].attach(hinges[i]);
+ const rearLabel=label(hinges[2],'824HV',[0,-.034,-.021],.035,.022);rearLabel.rotation.y=Math.PI;
+ wire(hinges[1],[[0,0,-.025],[side*.02,-.035,-.037],[0,-.062,-.025]]);
+ wire(hinges[2],[[0,0,-.025],[side*.014,-.035,-.031],[0,-.065,-.025]]);
+
  }
  return {root,joints};
 }

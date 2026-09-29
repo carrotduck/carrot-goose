@@ -5,7 +5,7 @@ import {createSimulationRouter} from '../integrations/duck/simulation.js';
 import {IDLE,makeMotion,compilePlan} from '../apps/studio/sim-core.mjs';
 const base=makeMotion('wave',[{pose:{'16':355},move_s:1},{pose:IDLE,move_s:1}]);const library={actions:[base]};
 test('scaling uses raw deltas and preserves return; semantic units isolated',()=>{let a=compilePlan({base_action:'wave',amplitude:.5,speed:.5},library,base);assert.equal(a.frames[0].target['16'],315);assert.equal(a.duration,4);assert.equal(a.frames[1].target['16'],275);assert.deepEqual(a.ranges['16'],[275,315]);assert.equal(a.hardware_executed,false);});
-test('reject leg IDs, invalid PWM, nonfinite, malformed timing and unknown actions',()=>{for(const spec of [{steps:[{pose:{'1':500},move_s:1}]},{steps:[{pose:{pitch:500},move_s:1}]},{steps:[{pose:{'16':1001},move_s:1}]},{steps:[{pose:{'16':NaN},move_s:1}]},{steps:[{pose:{'16':300},move_s:-1}]},{base_action:'shell'}])assert.throws(()=>compilePlan(spec,library,base));});
+test('reject unknown IDs, invalid PWM, nonfinite, malformed timing and unknown actions',()=>{for(const spec of [{steps:[{pose:{'19':500},move_s:1}]},{steps:[{pose:{pitch:500},move_s:1}]},{steps:[{pose:{'16':1001},move_s:1}]},{steps:[{pose:{'16':NaN},move_s:1}]},{steps:[{pose:{'16':300},move_s:-1}]},{base_action:'shell'}])assert.throws(()=>compilePlan(spec,library,base));});
 test('simulation HTTP: auth, mismatch, idempotency, failed model JSON and limits',async t=>{
  let calls=0,messages;let answer=JSON.stringify({base_action:'current',amplitude:.5,speed:.5,name:'test'});
  const app=express();app.use(express.json());app.use((req,res,next)=>{req.authUserId=req.headers['x-test-user'];next();});app.use('/api/chat/:userId/simulation',createSimulationRouter({library,generate:async input=>{calls++;messages=input;return {text:answer};}}));
@@ -18,6 +18,6 @@ test('simulation HTTP: auth, mismatch, idempotency, failed model JSON and limits
  assert.equal((await send({...body,language:'zh'})).status,409);
  assert.equal((await send({...body,prompt:'不同内容'})).status,409);
  answer='not json';assert.equal((await send({...body,language:'zh',request_id:'request_0002'})).status,422);assert.match(messages[0].content,/Use only Chinese/);
- answer=JSON.stringify({steps:[{pose:{'9':500},move_s:1}]});assert.equal((await send({...body,request_id:'request_0003'})).status,422);
+ answer=JSON.stringify({steps:[{pose:{'19':500},move_s:1}]});assert.equal((await send({...body,request_id:'request_0003'})).status,422);
  for(let i=4;i<=6;i++)await send({...body,request_id:`request_000${i}`});assert.equal((await send({...body,request_id:'request_0007'})).status,429);
 });

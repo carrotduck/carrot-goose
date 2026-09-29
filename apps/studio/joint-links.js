@@ -20,12 +20,13 @@ function tick(){
  if(Math.abs(a-b)>.035) reversed=a>b;
  for(const e of entries){
   if(e.behind)continue;
-  const left=['16','15','14'].includes(e.id)!==reversed;
+  const left=['16','15','14','13','12','11','10','9'].includes(e.id)!==reversed;
   e.card.style.left=left?'9px':'auto';e.card.style.right=left?'auto':'9px';
  }
  for(const {id,joint,line,dot,card,behind} of entries){
+  if(card.hidden){line.style.display=dot.style.display='none';if(behind)behind.visible=false;continue;}
   if(behind){
-   const end=joint.localToWorld(new T.Vector3(0,0,-.035));const depth=end.clone().project(s.camera).z,cr=card.getBoundingClientRect();
+   behind.visible=true;const end=joint.localToWorld(new T.Vector3(0,0,-.035));const depth=end.clone().project(s.camera).z,cr=card.getBoundingClientRect();
    const x=(cr.left+cr.width/2-rect.left)/rect.width*2-1,y=1-(cr.bottom-rect.top)/rect.height*2;
    const start=new T.Vector3(x,y,depth).unproject(s.camera);
    const projected=end.clone().project(s.camera);

@@ -321,5 +321,9 @@
   "Invalid frame range": "帧范围无效",
   "candidates": "候选片段",
   "skipped": "已跳过",
-  "motions": "动作"
+  "motions": "动作",
+  "Head and arms": "头部与手臂",
+  "Legs": "腿部",
+  "Joint controls": "关节控制",
+  "Bus": "总线"
 }

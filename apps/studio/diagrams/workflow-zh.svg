@@ -37,7 +37,7 @@
 <path d="M730 370H630V435H300V415" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
 <text x="585" y="292" class="small">经复核</text>
 <text x="585" y="314" class="small">后交接</text>
-<text x="35" y="520" class="small">预览驱动六路手臂和两路头部；导入的腿部数值保留在数据中。</text>
+<text x="35" y="520" class="small">预览头部、手臂和腿部轨迹，检查帧时长与动作衔接。</text>
 <text x="35" y="550" class="small">浏览器导出动作数据，经过单独复核后交给真机执行端。</text>
 <text x="35" y="580" class="small">姿态与节奏预览不能验证真机接触、平衡和负载。</text>
 </svg>

@@ -30,7 +30,7 @@ def read_action(path, idle):
             initial = target.copy()
         frames.append({'from': previous, 'target': target, 'start': elapsed,
                        'duration': duration, 'move': duration,
-                       'label': f'帧 / Frame {len(frames)+1}', 'gate': None, 'utterance': None})
+                       'label': f'Frame {len(frames)+1}', 'gate': None, 'utterance': None})
         previous = target.copy()
         elapsed += duration
     return {'name': path.name, 'initial': initial, 'frames': frames, 'duration': elapsed,

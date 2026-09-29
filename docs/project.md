@@ -8,7 +8,7 @@ Using TonyPi, I designed interaction sequences and connected webpage dialogue cu
 
 The original TonyPi editor makes joint IDs and per-frame values available for action programming. The new workbench retains that structure and adds a rotatable model, timeline inspection, editable copies and language-assisted motion drafts. This makes it possible to compare the amplitude of a first reach with a stronger invitation, adjust a pause after a reply, and review the return into the next gesture.
 
-The procedural model was refined using front, side and rear photographs of the physical robot. The model supports pose and timing inspection; it is not a mechanical measurement or a dynamics model. Six arm channels and two head channels are animated. Imported leg values remain in the data.
+The procedural model was refined using front, side and rear photographs of the physical robot. The model supports pose and timing inspection; it is not a mechanical measurement or a dynamics model. Head, arm and leg targets drive a hierarchical joint model for full-body pose review.
 
 ## System architecture
 

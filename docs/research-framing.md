@@ -1,7 +1,7 @@
 # Research framing
 
-The project is presented around coordination in embodied conversation: how head orientation and gesture timing accompany a reply. Carrot Goose is the authoring workbench supporting this physical interaction project.
+This project explores coordination in embodied conversation: how head orientation, gesture timing and short voice cues accompany a reply. The physical robot interaction is the central demonstration; Carrot Goose is the supporting authoring workbench.
 
-Mousas and collaborators name research around an agent context and explicit variables, for example [Virtual Museum Tour Agent: Effects of Responsiveness and Awareness](https://doi.org/10.1109/ISMAR67309.2025.00021) and [Exploring Familiarity and Knowledgeability in Conversational Virtual Agents](https://doi.org/10.1145/3757062). This motivates a concrete project title and a testable timing question, rather than a list of software features.
+The prototype provides an implementation and a developer demonstration. A proposed comparison would keep dialogue and gesture trajectory fixed while varying gesture onset relative to the reply. Execution records could establish actual onset and completion, while participant accounts could address perceived responsiveness. No participant study has been completed.
 
-These studies concern virtual agents. The robot prototype does not reproduce their experiments or establish the same findings. A proposed robot comparison would hold dialogue and trajectory fixed while varying gesture onset relative to the reply, recording actual onset/completion and asking about perceived responsiveness. No participant study has been completed.
+The browser supports kinematic pose and timing review. It does not estimate balance, contact forces or motor load. Physical observations and controller feedback remain separate evidence.

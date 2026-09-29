@@ -4,6 +4,8 @@ A physical robot project exploring how gaze, gesture and speech accompany LLM-ba
 
 I connected the Carrot Duck web companion to a TonyPi robot and developed sequences for attention shifts, playful responses and an invitation to hug. The system combines perception, dialogue cues, coordinated head and arm movement, voice playback and execution feedback. Carrot Goose, the supporting browser workbench, helps inspect and revise motion before physical rehearsal.
 
+[![Watch the robot demonstration](https://i.ytimg.com/vi/SYHgv-Zi3hE/hqdefault.jpg)](https://youtu.be/SYHgv-Zi3hE)
+
 [Watch the robot demonstration](https://youtu.be/SYHgv-Zi3hE) · [Open the workbench](https://carrotgoose.online/) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 
 [Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process.
@@ -48,13 +50,13 @@ Try “Raise an arm, nod twice, then return” or “Reduce the current amplitud
 
 **Analyze motion library** scans loaded sequences for pauses, direction changes, returns and event boundaries. Select a candidate, adjust its start and end frames, preview it, then name and confirm it. Saved fragments retain source frames and entry/exit poses, persist in this browser and can be exported together. The analyzer proposes kinematic fragments; expressive meanings are assigned during review. See [motion segmentation](docs/segmentation.md).
 
-The working installation contains 137 sequences imported from the robot's cached library and rehearsal material. This repository includes an authored greeting and the demonstration choreography. Import your own TonyPi action folder to build a local library:
+The working installation contains 138 sequences imported from the robot's cached library and rehearsal material. This repository includes an authored greeting and the demonstration choreography. Import your own TonyPi action folder to build a local library:
 
 ```sh
 python tools/import_actions.py /path/to/ActionGroups
 ```
 
-The importer reads all servo channels in each `.d6a` file. The current 3D model animates six arm channels and two head channels; the remaining values stay in the imported data. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
+The importer reads all servo channels in each `.d6a` file. The 3D preview includes articulated hips, knees and ankles alongside the arms and head. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
 
 ## Run
 
@@ -100,3 +102,5 @@ The [demonstration](https://youtu.be/SYHgv-Zi3hE) follows a short exchange from 
 ## References
 
 [Hiwonder TonyPi](https://github.com/Hiwonder/TonyPi) provides the platform code and action-file reference. [URDF Loaders](https://github.com/gkjohnson/urdf-loaders) is a useful reference for future calibrated robot models. The browser currently uses Three.js and a procedural model. Dependency attribution is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+See [full-body joint preview](docs/full-body-preview.md) for the leg mapping and editing workflow.

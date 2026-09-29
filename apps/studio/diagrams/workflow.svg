@@ -37,7 +37,7 @@
 <path d="M730 370H630V435H300V415" fill="none" stroke="#665449" stroke-width="1.5" marker-end="url(#a)"/>
 <text x="585" y="292" class="small">Reviewed</text>
 <text x="585" y="314" class="small">handoff</text>
-<text x="35" y="520" class="small">The preview animates six arm channels and two head channels; imported leg values are retained.</text>
+<text x="35" y="520" class="small">Review head, arm and leg trajectories, frame timing and transitions.</text>
 <text x="35" y="550" class="small">The browser exports motion data. Physical execution requires a separate reviewed handoff.</text>
 <text x="35" y="580" class="small">Pose and timing review does not establish contact, balance or load on the real robot.</text>
 </svg>

@@ -1,5 +1,5 @@
 // Keep motion IDs and exported data stable; localize presentation only.
-const dictionary = await (await fetch('./locale-data.json?v=6')).json();
+const dictionary = await (await fetch('./locale-data.json?v=13')).json();
 let language = localStorage.getItem('goose_language') === 'zh' ? 'zh' : 'en';
 const originals = new WeakMap();
 const keys = Object.keys(dictionary).sort((a,b)=>b.length-a.length);

@@ -16,3 +16,10 @@
 /* One editing surface: frame timing, language planning, then optional inspection. */
 .right{display:block;background:#fffdfa}.right>.pad{padding:14px 16px}.right>.panelhead{min-height:32px;padding:8px 16px}.right .row{flex-wrap:nowrap;gap:10px}.right .row button{flex:0 1 150px}.right .row label{display:flex;align-items:center;gap:7px}.right #instruction{height:98px;min-height:70px}.right .hint{margin:0;color:#977b65}.right details{margin:8px 16px}.right .joint-details table{font-size:11px}#plan-result:empty{display:none}#plan-result{border:0;background:transparent;padding:0;margin:8px 0}#range-report:empty{display:none}.servo-pitch{left:calc(50% - 135px)}.servo-yaw{right:calc(50% - 135px)}
 @media(max-width:800px){.right .row{flex-wrap:wrap}.servo-pitch{left:calc(50% - 115px)}.servo-yaw{right:calc(50% - 115px)}}
+
+.servo-card[hidden]{display:none}#body-controls{max-width:130px;margin-left:auto}
+.servo-13,.servo-5{top:15%;padding:3px 7px}
+.servo-12,.servo-4{top:31%;padding:3px 7px}
+.servo-11,.servo-3{top:47%;padding:3px 7px}
+.servo-10,.servo-2{top:63%;padding:3px 7px}
+.servo-9,.servo-1{top:79%;padding:3px 7px}
