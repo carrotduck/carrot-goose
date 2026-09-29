@@ -1,12 +1,29 @@
-# Carrot Goose
+# Embodied Conversation
 
-Carrot Goose is a physical companion project built on TonyPi, connecting hand-following, coordinated head and arm gestures, and speech to a web conversation.
+A physical robot project exploring how gaze, gesture and speech accompany LLM-based conversation.
 
-I designed and tested interaction sequences in which the robot shifts attention, responds playfully and offers a hug. The demonstration uses an authored exchange; live hand-following was also tested separately. A supporting 3D workbench helps me review poses, edit timing and prepare movements for rehearsal.
+I connected the Carrot Duck web companion to a TonyPi robot and developed sequences for attention shifts, playful responses and an invitation to hug. The system combines perception, dialogue cues, coordinated head and arm movement, voice playback and execution feedback. Carrot Goose, the supporting browser workbench, helps inspect and revise motion before physical rehearsal.
 
 [Watch the robot demonstration](https://youtu.be/SYHgv-Zi3hE) · [Open the workbench](https://carrotgoose.online/) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 
-[Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process. The recorded robot demonstration predates the current browser workbench.
+[Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process.
+
+## System architecture
+
+```mermaid
+flowchart LR
+    U[User input] --> D[Web companion and LLM dialogue]
+    D --> C[Dialogue cues and sequence state]
+    P[Camera observations] --> G[Head-following controller]
+    C --> E[Local motion and speech execution]
+    G --> E
+    E --> R[TonyPi head, arms and audio]
+    E --> F[Completion or interruption receipts]
+    F --> C
+    W[Carrot Goose motion workbench] -. reviewed motion data .-> C
+```
+
+The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following; the recorded exchange uses an authored performance sequence. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review rather than issuing servo commands.
 
 ## Physical interaction
 
@@ -19,7 +36,7 @@ The recorded demonstration connects webpage dialogue cues to an authored sequenc
 | Evidence and current scope | [Validation status](docs/validation.md) |
 | Dialogue and gesture sequence | [Performance score](docs/performance.md) |
 
-## Supporting motion workbench
+## Carrot Goose · supporting workbench
 
 ![Carrot Goose motion workbench](docs/workbench.png)
 
@@ -28,6 +45,8 @@ Choose a motion, scrub its timeline and edit a frame's joint targets. The workbe
 Moving a slider previews the corresponding joint immediately. Connector lines identify the controlled joint as the camera moves. Select **Update** to save the preview as a frame. The separate **Offset** field adjusts the model's calibration preview and is exported with the mapping; it is not a second joint axis.
 
 Try “Raise an arm, nod twice, then return” or “Reduce the current amplitude to 70% and halve the speed.” The interface opens in English and can be switched to Chinese.
+
+**Analyze motion library** scans loaded sequences for pauses, direction changes, returns and event boundaries. Select a candidate, adjust its start and end frames, preview it, then name and confirm it. Saved fragments retain source frames and entry/exit poses, persist in this browser and can be exported together. The analyzer proposes kinematic fragments; expressive meanings are assigned during review. See [motion segmentation](docs/segmentation.md).
 
 The working installation contains 137 sequences imported from the robot's cached library and rehearsal material. This repository includes an authored greeting and the demonstration choreography. Import your own TonyPi action folder to build a local library:
 
