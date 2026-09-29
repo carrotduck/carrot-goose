@@ -297,5 +297,8 @@
   "Carrot Duck LLM": "鸭鸭语言模型",
   "The planner receives your request and current sequence, then returns editable frames.": "规划器接收动作描述与当前序列，返回可编辑的动作帧。",
   "Joint values": "关节数值",
-  "Selected frame": "选中帧"
+  "Selected frame": "选中帧",
+  "Sign in to generate": "登录后生成",
+  "Preview playing": "正在播放预览",
+  "Planning timed out. Please try again.": "生成超时，请重试。"
 }
