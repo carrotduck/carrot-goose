@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {createRobot} from './robot.js?v=4';
+import {createRobot} from './robot.js?v=5';
 import {OrbitControls} from './vendor/OrbitControls.js';
 const labels={"复原到起点 · 安静待机": "Rest", "你靠近 · 转向你": "Turn toward you", "手指向左 · 双手安静": "Look at finger", "手指向右": "Look right", "手指向上": "Look up", "手指向下": "Look down", "手停 · 视线停在手上": "Hold gaze", "看向你的脸": "Look at face", "再看看你的手": "Look at hand", "又看向你": "Look at face", "再看手 · 低头等你": "Look down and wait", "你的第一句文字": "First question", "不告诉你 · 文字先出现": "Wait for reply", "轻轻点头 · 低下": "Nod", "点头以后 · 抬头看你": "Look up at you", "让开心停留一下": "Pause", "Cheer · 双臂前抬与点头摇摆 · 1/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 2/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 3/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 4/5": "Cheer", "Cheer · 双臂前抬与点头摇摆 · 5/5": "Cheer", "再看你 · 等你的手移开": "Look at hand", "手指已移开 · 注意到离开": "Hand withdraws", "第一次轻轻抬手": "Raise arm", "犹豫 · 缩回一点": "Hesitate", "Hey · 看向你的脸": "Hey, look at face", "再看你的手 · 决定邀请": "Look at hand", "第二次邀请 · 胸前停住": "Invite again", "坚定地等你 · 看手再看脸": "Nod and look back", "你的第二句文字": "Second question", "拥抱回复出现 · 保持邀请": "Read hug reply", "双臂向前 · 邀请拥抱 · 1/3": "Offer hug", "双臂向前 · 邀请拥抱 · 2/3": "Offer hug", "双臂向前 · 邀请拥抱 · 3/3": "Offer hug", "一个不接触的拥抱 · 停留": "Hold invitation", "自然放下双臂": "Lower arms", "拥抱后看向你 · 回到待机": "Return to rest"};
 const label=x=>labels[x]?x+" / "+labels[x]:x;
@@ -43,5 +43,5 @@ options();choose(current);updateMappingControls();
 window.studio={label,library,sample,seek,choose,acceptEvent,get current(){return current},addAction(a){library.actions.push(a);$('search').value='';choose(a);options();},get state(){return {time,playing,action:current.name,run,sequence,log,pose:sample(current,time).pose}},renderer,scene};
 function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(playing){time=Math.min(current.duration,time+dt*Number($('speed').value));drawPose();if(time>=current.duration){playing=false;stopAudio();$('play').textContent='运行 / Play';note('completed',{action:current.name});drawPose();}}controls.update();renderer.render(scene,camera);requestAnimationFrame(tick);}requestAnimationFrame(tick);
 
-await import('./editor.js?v=4');
+await import('./editor.js?v=5');
 
