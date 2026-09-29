@@ -1,6 +1,8 @@
 # Carrot Goose
 
-Carrot Goose is a TonyPi robot project exploring how gestures accompany conversation. It brings together a 3D motion workbench, motion planning and Python modules used during physical rehearsals.
+Carrot Goose is a physical companion project built on TonyPi, connecting hand-following, coordinated head and arm gestures, and speech to a web conversation.
+
+I designed and tested interaction sequences in which the robot shifts attention, responds playfully and offers a hug. The demonstration uses an authored exchange; live hand-following was also tested separately. A supporting 3D workbench helps me review poses, edit timing and prepare movements for rehearsal.
 
 [Open the workbench](https://carrotgoose.online/) · [Watch the demonstration](https://youtu.be/SYHgv-Zi3hE) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 

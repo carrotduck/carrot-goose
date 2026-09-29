@@ -1,7 +1,7 @@
 import * as T from 'three';
 const s=window.studio,view=document.getElementById('view'),ns='http://www.w3.org/2000/svg';
 const svg=document.createElementNS(ns,'svg');svg.id='joint-links';svg.setAttribute('aria-hidden','true');view.append(svg);
-let active=null;
+let active=null, reversed=false;
 const entries=Object.entries(s.joints).map(([id,joint])=>{
  const line=document.createElementNS(ns,'path'),dot=document.createElementNS(ns,'circle');line.setAttribute('class','joint-link');dot.setAttribute('class','joint-dot');dot.setAttribute('r','3');svg.append(line,dot);
  const card=document.querySelector('.servo-'+id);
@@ -15,12 +15,21 @@ const entries=Object.entries(s.joints).map(([id,joint])=>{
 function tick(){
  s.scene.updateMatrixWorld(true);s.camera.updateMatrixWorld(true);
  const rect=view.getBoundingClientRect();
+ const a=s.joints['16'].getWorldPosition(new T.Vector3()).project(s.camera).x;
+ const b=s.joints['8'].getWorldPosition(new T.Vector3()).project(s.camera).x;
+ if(Math.abs(a-b)>.035) reversed=a>b;
+ for(const e of entries){
+  if(e.behind)continue;
+  const left=['16','15','14'].includes(e.id)!==reversed;
+  e.card.style.left=left?'9px':'auto';e.card.style.right=left?'auto':'9px';
+ }
  for(const {id,joint,line,dot,card,behind} of entries){
   if(behind){
    const end=joint.localToWorld(new T.Vector3(0,0,-.035));const depth=end.clone().project(s.camera).z,cr=card.getBoundingClientRect();
    const x=(cr.left+cr.width/2-rect.left)/rect.width*2-1,y=1-(cr.bottom-rect.top)/rect.height*2;
    const start=new T.Vector3(x,y,depth).unproject(s.camera);
-   const shoulder=new T.Vector3(id==='pitch'?-.052:.052,.46,-.065);
+   const projected=end.clone().project(s.camera);
+   const shoulder=new T.Vector3(x,Math.min(y-.08,projected.y+.13),depth).unproject(s.camera);
    behind.geometry.dispose();behind.geometry=new T.BufferGeometry().setFromPoints([start,shoulder,end]);behind.computeLineDistances();
    continue;
   }
