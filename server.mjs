@@ -1,3 +1,4 @@
+import {createWorkbenchRouter} from './integrations/duck/workbench.js';
 import express from 'express';
 import {fileURLToPath} from 'node:url';
 import {createSimulationRouter} from './integrations/duck/simulation.js';
@@ -9,11 +10,7 @@ async function generate(messages){
  const r=await fetch(base+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:`Bearer ${process.env.LLM_API_KEY}`},body:JSON.stringify({model:process.env.LLM_MODEL||'deepseek-chat',messages,max_tokens:2200,temperature:.25}),signal:AbortSignal.timeout(45000)});
  if(!r.ok)throw Error('Provider request failed');const j=await r.json();return {text:j.choices?.[0]?.message?.content||''};
 }
-app.use('/api/chat/:userId/simulation',(req,res,next)=>{
- const origin=req.headers.origin;if(origin&&!['http://localhost:'+port,'http://127.0.0.1:'+port].includes(origin))return res.sendStatus(403);
- if(req.params.userId!=='local'||req.headers.authorization!=='Bearer local')return res.sendStatus(401);
- req.authUserId='local';next();
-},createSimulationRouter({generate}));
+app.use('/api/workbench',createWorkbenchRouter({generate,origins:['http://localhost:'+port,'http://127.0.0.1:'+port]}));
 app.get('/api/health',(_req,res)=>res.json({ok:true,app:'carrot-goose'}));
 app.use(express.static(fileURLToPath(new URL('./apps/studio/',import.meta.url))));
 app.listen(port,'127.0.0.1',()=>console.log(`Carrot Goose: http://127.0.0.1:${port}`));

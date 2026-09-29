@@ -300,5 +300,7 @@
   "Selected frame": "选中帧",
   "Sign in to generate": "登录后生成",
   "Preview playing": "正在播放预览",
-  "Planning timed out. Please try again.": "生成超时，请重试。"
+  "Planning timed out. Please try again.": "生成超时，请重试。",
+  "Motion planner": "动作规划",
+  "Project": "项目介绍"
 }

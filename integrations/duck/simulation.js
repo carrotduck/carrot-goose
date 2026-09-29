@@ -3,21 +3,22 @@ import fs from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
 import {makeMotion,compilePlan,IDLE} from '../../apps/studio/sim-core.mjs';
 
-export function createSimulationRouter({generate,library}={}){
+export function createSimulationRouter({generate,library,identify}={}){
  const router=Router({mergeParams:true});
  const getLibrary=()=>library??=JSON.parse(fs.readFileSync(new URL('../../apps/studio/library.json',import.meta.url),'utf8'));
  const accounts=new Map();
  router.post('/plan',async(req,res)=>{
   res.setHeader('Cache-Control','no-store');
-  if(!req.authUserId)return res.status(401).json({error:'请先登录鸭鸭账号'});
-  if(req.params.userId!==req.authUserId)return res.status(403).json({error:'账号不匹配'});
+  const identity=identify?identify(req):req.authUserId;
+  if(!identity)return res.status(401).json({error:'请先登录鸭鸭账号'});
+  if(!identify&&req.params.userId!==req.authUserId)return res.status(403).json({error:'账号不匹配'});
   const {prompt,request_id,current}=req.body||{};
   const language=req.body?.language==='zh'?'Chinese':'English';
   if(typeof prompt!=='string'||!prompt.trim()||prompt.length>1500||typeof request_id!=='string'||!/^[a-zA-Z0-9_-]{8,80}$/.test(request_id))return res.status(400).json({error:'请填写有效请求（最多1500字）'});
   let context;try{context=current?makeMotion(current.name,current.steps,current.initial,'simulation_context'):makeMotion('待机',[{pose:IDLE,move_s:1}],IDLE);}catch(e){return res.status(400).json({error:e.message});}
   const now=Date.now();for(const [id,state]of accounts)if(!state.busy&&now-state.last>300000)accounts.delete(id);
-  if(accounts.size>=500&&!accounts.has(req.authUserId))return res.status(503).json({error:'规划服务繁忙，请稍后重试'});
-  const a=accounts.get(req.authUserId)||{busy:false,last:now,times:[],cache:new Map()};accounts.set(req.authUserId,a);a.last=now;
+  if(accounts.size>=500&&!accounts.has(identity))return res.status(503).json({error:'规划服务繁忙，请稍后重试'});
+  const a=accounts.get(identity)||{busy:false,last:now,times:[],cache:new Map()};accounts.set(identity,a);a.last=now;
   const hash=createHash('sha256').update(JSON.stringify({prompt,current:context,language})).digest('hex');const cached=a.cache.get(request_id);
   if(cached){if(cached.hash!==hash)return res.status(409).json({error:'请求编号已用于不同内容'});return res.json(cached.result);}
   if(a.busy)return res.status(409).json({error:'当前账号已有一个动作正在规划'});

@@ -51,7 +51,7 @@ Open `http://127.0.0.1:8770`. Editing and playback work locally. For language pl
 node --env-file=.env server.mjs
 ```
 
-The local server listens on this computer only. The hosted workbench uses the existing Carrot Duck account. [Integration notes](docs/integration.md) explain that connection and the dedicated Carrot Goose domain.
+The local server listens on this computer only. The hosted workbench generates motions without a Carrot Duck account. Model credentials stay on the server; requests have per-client and shared limits. [Integration notes](docs/integration.md) explain that connection and the dedicated Carrot Goose domain.
 
 ## Project files
 
