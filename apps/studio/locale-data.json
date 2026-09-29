@@ -287,5 +287,13 @@
   "Motion draft ready.": "已生成模拟候选。",
   "pitch": "俯仰",
   "yaw": "左右",
-  "ID:": "编号："
+  "ID:": "编号：",
+  "Offset": "偏差",
+  "preview offset": "预览偏差",
+  "Model calibration offset, separate from motion targets": "模型校准偏差，与动作目标值分开",
+  "Pose preview · Update to save": "姿态预览 · 点击更新保存",
+  "Offset must be between -125 and 125": "偏差须介于 -125 到 125",
+  "Model offset · Save mapping to export": "模型偏差 · 保存映射可导出",
+  "Carrot Duck LLM": "鸭鸭语言模型",
+  "The planner receives your request and current sequence, then returns editable frames.": "规划器接收动作描述与当前序列，返回可编辑的动作帧。"
 }

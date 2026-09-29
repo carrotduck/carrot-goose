@@ -1,8 +1,8 @@
 import * as T from 'three';
 // Photo-based approximation. Dimensions and hinge placement are not factory CAD.
 export function createRobot(scene){
- const mat=(c,m=0)=>new T.MeshStandardMaterial({color:c,metalness:m,roughness:.38});
- const white=mat('#f7f8fb',.12),black=mat('#171a20',.08),metal=mat('#959f9e',.8),rubber=mat('#393d3c'),blue=mat('#322632',.3);
+ const mat=(c,m=0)=>new T.MeshStandardMaterial({color:c,metalness:m,roughness:.5});
+ const white=mat('#f2f1ed',.12),black=mat('#171a20',.08),metal=mat('#959f9e',.8),rubber=mat('#393d3c'),blue=mat('#322632',.3);
  const root=new T.Group();scene.add(root);const joints={};
  function group(p,n,xyz){let g=new T.Group();g.name=n;g.position.set(...xyz);p.add(g);return g;}
  function mesh(p,geo,xyz,material=white){let m=new T.Mesh(geo,material);m.position.set(...xyz);m.castShadow=true;m.receiveShadow=true;p.add(m);return m;}
@@ -39,9 +39,13 @@ for(const y of [.346,.283,.254])screw(root,side*(y<.26?.047:.069),y,.04,.0018);}
  box(joints.pitch,[0,.012,-.008],[.05,.043,.046],white);box(joints.pitch,[0,-.018,-.006],[.037,.019,.027],black);
  for(const side of [-1,1]){const cheek=polygon(joints.pitch,[[-.025,.035],[.014,.035],[.024,.023],[.023,-.019],[.005,-.024],[-.006,-.011],[-.023,-.009]],0);cheek.rotation.y=side*Math.PI/2;cheek.position.x=side*.029;const rim=box(joints.pitch,[side*.027,.035,-.002],[.003,.01,.047]);rim.rotation.z=side*.3;const screwAxis=group(joints.pitch,'head_side_screws',[side*.031,0,0]);screwAxis.rotation.y=side*Math.PI/2;screw(screwAxis,0,.015,0,.0022);screw(screwAxis,.009,-.009,0,.0022);}
 box(joints.pitch,[0,-.027,.001],[.05,.007,.047],white);cylinder(joints.pitch,[0,0,.03],.015,.004,black);cylinder(joints.pitch,[0,0,.034],.0105,.003,blue);cylinder(joints.pitch,[0,0,.038],.0078,.001,blue);for(const x of [-.02,.02])for(const y of [-.032,.032])screw(joints.pitch,x,y,.032,.0016);box(joints.pitch,[0,.022,.031],[.0012,.025,.0007],metal);wire(joints.yaw,[[.021,0,-.017],[.031,.03,-.024],[.02,.049,-.029]]);
+ joints.pitch.scale.set(.94,.94,.94);
+ const lensRing=mesh(joints.pitch,new T.TorusGeometry(.0114,.0012,12,48),[0,0,.039],metal);
+ const glass=mesh(joints.pitch,new T.SphereGeometry(.0076,24,16),[0,0,.038],new T.MeshPhysicalMaterial({color:'#111b25',metalness:.15,roughness:.08,clearcoat:1}));glass.scale.z=.28;
+ const reflection=mesh(joints.pitch,new T.SphereGeometry(.0015,12,8),[-.003,.003,.0405],new T.MeshBasicMaterial({color:'#a2b6ca'}));reflection.scale.z=.15;
  // Arm joints remain explicitly provisional. Thin plates and hollow grippers follow the photo.
  for(const [side,ids]of [[1,['6','7','8']],[-1,['14','15','16']]]){
-   let a=group(root,'BUS_'+ids[0],[side*.106,.344,0]);let b=group(a,'BUS_'+ids[1],[0,0,0]);let c=group(b,'BUS_'+ids[2],[0,-.09,0]);ids.forEach((id,i)=>joints[id]=[a,b,c][i]);
+   let a=group(root,'BUS_'+ids[2],[side*.106,.344,0]);let b=group(a,'BUS_'+ids[1],[0,0,0]);let c=group(b,'BUS_'+ids[0],[0,-.09,0]);ids.forEach((id,i)=>joints[id]=[c,b,a][i]);
    plate(b,[0,0,.026],.049,.034,[[0,0,.007]]);plate(b,[0,0,-.025],.049,.034);box(b,[0,.015,0],[.044,.003,.051]);cylinder(b,[0,0,.029],.007,.005,black);for(const x of [-.017,.017])screw(b,x,0,.029,.002);
    servo(b,[0,-.048,0],.031,.044);plate(b,[0,-.049,.024],.043,.052,[[0,.014,.006],[0,-.014,.006]]);for(const y of [-.036,-.062]){cylinder(b,[0,y,.027],.005,.003,black);for(const x of [-.013,.013])screw(b,x,y,.028,.0018);}
    wire(b,[[side*.016,-.015,-.018],[side*.025,-.05,-.024],[side*.016,-.081,-.012]]);
