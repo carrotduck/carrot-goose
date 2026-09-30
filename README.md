@@ -1,14 +1,14 @@
-# Embodied Conversation
+# CARROT GOOSE
 
 A physical robot project exploring how gaze, gesture and speech accompany LLM-based conversation.
 
-I connected the Carrot Duck web companion to a TonyPi robot and developed sequences for attention shifts, playful responses and an invitation to hug. The system combines perception, dialogue cues, coordinated head and arm movement, voice playback and execution feedback. Carrot Goose, the supporting browser workbench, helps inspect and revise motion before physical rehearsal.
+I connected the Carrot Duck web companion to a TonyPi robot and developed sequences for attention shifts, playful responses and an invitation to hug. The system combines perception, dialogue cues, coordinated head and arm movement, voice playback and execution feedback. The Carrot Goose project includes this robot interaction system and a supporting browser workbench for inspecting and revising motion before physical rehearsal.
 
 [![Watch the robot demonstration](https://i.ytimg.com/vi/SYHgv-Zi3hE/hqdefault.jpg)](https://youtu.be/SYHgv-Zi3hE)
 
 [Watch the robot demonstration](https://youtu.be/SYHgv-Zi3hE) · [Open the workbench](https://carrotgoose.online/) · [Carrot Duck](https://github.com/carrotduck/carrot-duck)
 
-[Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process.
+[Project website](https://shiruifu.online/projects/embodied-robot/) presents the design question and development process. The browser workbench uses Three.js; the [Unreal Engine preview](unreal/README.md) provides editor scripts for generating a simplified robot scene and Level Sequences.
 
 ## System architecture
 
