@@ -1,8 +1,8 @@
 # CARROT GOOSE
 
-A physical robot project exploring how gaze, gesture and speech accompany LLM-based conversation.
+A robot companion exploring how physical gestures make a conversational response feel directed towards a person.
 
-I connected the Carrot Duck web companion to a TonyPi robot and developed sequences for attention shifts, playful responses and an invitation to hug. The system combines perception, dialogue cues, coordinated head and arm movement, voice playback and execution feedback. The Carrot Goose project includes this robot interaction system and a supporting browser workbench for inspecting and revising motion before physical rehearsal.
+I connected the Carrot Duck companion to a TonyPi robot and designed how it turns towards a user, responds playfully and offers a hug. I also built a browser workbench to inspect poses and revise their timing before trying them on the robot.
 
 [![Watch the robot demonstration](https://i.ytimg.com/vi/SYHgv-Zi3hE/hqdefault.jpg)](https://youtu.be/SYHgv-Zi3hE)
 
@@ -25,11 +25,11 @@ flowchart LR
     W[Carrot Goose motion workbench] -. reviewed motion data .-> C
 ```
 
-The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review.
+The web companion sends dialogue cues to a local controller, which coordinates movement with short voice clips and reports when execution finishes or is interrupted. Camera observations support head-following. Motions are edited in the workbench and reviewed before physical use.
 
 ## Physical interaction
 
-The demonstration shows dialogue-linked attention, a playful reply and an invitation to hug. The local controller returns completion or interruption feedback, while short voice cues play through the attached audio device.
+In the hug sequence, the robot faces the user and raises an arm before opening both arms. This lead-in is part of the design question: does the gesture feel responsive to the conversation? A [proposed study](docs/research-framing.md) would vary when the gesture begins relative to the reply.
 
 | Component | Documentation |
 | --- | --- |
@@ -48,7 +48,7 @@ Moving a slider previews the corresponding joint immediately. Connector lines id
 
 Try “Raise an arm, nod twice, then return” or “Reduce the current amplitude to 70% and halve the speed.”
 
-**Analyze motion library** scans loaded sequences for pauses, direction changes, returns and event boundaries. Select a candidate, adjust its start and end frames, preview it, then name and confirm it. Saved fragments retain source frames and entry/exit poses, persist in this browser and can be exported together. The analyzer proposes kinematic fragments; expressive meanings are assigned during review. See [motion segmentation](docs/segmentation.md).
+**Analyze motion library** suggests places to divide a sequence. Preview and adjust each fragment, then name and save it for reuse. [Motion segmentation](docs/segmentation.md) explains the analysis and export process.
 
 The hosted workbench contains 138 motion sequences; this public repository bundles three example sequences. Import your own TonyPi action folder to build a local library:
 
@@ -73,7 +73,7 @@ Open `http://127.0.0.1:8770`. Editing and playback work locally. For language pl
 node --env-file=.env server.mjs
 ```
 
-The local server listens on this computer only. The hosted workbench generates motions without a Carrot Duck account. Model credentials stay on the server; requests have per-client and shared limits. [Integration notes](docs/integration.md) explain that connection and the dedicated Carrot Goose domain.
+The hosted workbench can be used without a Carrot Duck account. See [Integration notes](docs/integration.md) for planning-service configuration and request limits.
 
 ## Project files
 
@@ -96,8 +96,6 @@ pip install -r robot/requirements.txt
 python -m unittest discover -s robot -p "test_*.py"
 python -m unittest discover -s robot/rehearsal -p "test_*.py"
 ```
-
-The [demonstration](https://youtu.be/SYHgv-Zi3hE) follows a short exchange from attention to a playful response and an invitation to hug. Carrot Duck provides the companion research context; Carrot Goose focuses on physical expression and rehearsal.
 
 ## References
 
