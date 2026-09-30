@@ -50,7 +50,7 @@ Try “Raise an arm, nod twice, then return” or “Reduce the current amplitud
 
 **Analyze motion library** scans loaded sequences for pauses, direction changes, returns and event boundaries. Select a candidate, adjust its start and end frames, preview it, then name and confirm it. Saved fragments retain source frames and entry/exit poses, persist in this browser and can be exported together. The analyzer proposes kinematic fragments; expressive meanings are assigned during review. See [motion segmentation](docs/segmentation.md).
 
-The workbench contains 138 motion sequences. Import your own TonyPi action folder to build a local library:
+The hosted workbench contains 138 motion sequences; this public repository bundles three example sequences. Import your own TonyPi action folder to build a local library:
 
 ```sh
 python tools/import_actions.py /path/to/ActionGroups
