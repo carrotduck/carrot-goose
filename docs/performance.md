@@ -13,7 +13,7 @@ This performance score connects dialogue cues to attention, movement and speech.
 | Second question | “What is it?” | Hold the reach | Await the hug reply |
 | Hug | “Just wanted to give you a hug. Hope you’re having a good day, too.” | Prepare and open both arms, hold, lower and return | Complete the return before the next take |
 
-Hand tracking was tested on the physical robot. Head orientation is not a claim of eye-gaze estimation or personal identity recognition.
+Hand tracking was tested on the physical robot; the controller adjusts head orientation to follow the hand.
 
 ## Speech and execution
 
@@ -25,4 +25,4 @@ The rehearsal controller uses execution feedback to distinguish completion from 
 
 Orientation, hold, nod, arm lift, invitation and return are useful compositional units. A shoulder lift and its return can be separate units, allowing a pause or head turn between them. Returning should use the appropriate transition from the current pose, especially where a hand passes near a leg.
 
-The design question is whether the lead-in makes the invitation feel directed towards the user. The demonstration presents this design; it does not establish how participants interpret it.
+The design question is whether the lead-in makes the invitation feel directed towards the user. See the [proposed comparison](research-framing.md) for how gesture timing could be evaluated.
