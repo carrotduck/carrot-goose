@@ -25,11 +25,11 @@ flowchart LR
     W[Carrot Goose motion workbench] -. reviewed motion data .-> C
 ```
 
-The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following; the recorded exchange uses an authored performance sequence. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review.
+The interaction loop advances through dialogue cues and execution feedback. Perception can drive head-following. LLM-based dialogue, language-assisted motion authoring and local robot execution have distinct roles. The workbench exports motion data for review.
 
 ## Physical interaction
 
-The recorded demonstration connects webpage dialogue cues to an authored sequence of attention, a playful reply and an invitation to hug. The local controller returns completion or interruption feedback, while short voice cues play through the attached audio device.
+The demonstration shows dialogue-linked attention, a playful reply and an invitation to hug. The local controller returns completion or interruption feedback, while short voice cues play through the attached audio device.
 
 | Component | Documentation |
 | --- | --- |
@@ -84,7 +84,7 @@ The local server listens on this computer only. The hosted workbench generates m
 | `robot/rehearsal` | Scene runner, webpage event transport, head/arm coordination and audio playback |
 | `integrations/duck` | Independent workbench planning and companion integration adapter |
 | `tools` | Action import and analysis |
-| `unreal` | UE 5.7 editor scripts for the earlier block-model preview |
+| `unreal` | UE 5.7 editor scripts for the block-model preview |
 
 The robot modules preserve the rehearsal implementation and its own joint conventions. They are reference components for an existing TonyPi installation. See [robot setup](docs/robot.md) before adapting them to another robot.
 
