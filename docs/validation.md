@@ -9,7 +9,7 @@
 | Browser workbench | Joint previews, frame editing, language planning and playback have software checks. No direct hardware commands are sent by this interface. |
 | Motion fragments | The workbench suggests cuts at pauses, direction changes and event boundaries. The author reviews and names fragments before reuse; the language planner can also adjust whole sequences or generate frames. |
 
-The source release includes the scene candidate and runtime as development artifacts, rather than certifying every included trajectory on a robot. Personal session logs are not published. Offline suites use simulated hardware; vendor SDK parity and personal audio-asset checks require separately supplied fixtures and are skipped when those fixtures are absent.
+Personal session logs are not published. Offline suites use simulated hardware; vendor SDK parity and personal audio-asset checks require separately supplied fixtures and are skipped when those fixtures are absent.
 
 No user study has yet established perceived responsiveness, recognition or social presence. The proposed timing comparison is described on the project website.
 
