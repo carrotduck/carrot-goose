@@ -56,7 +56,7 @@ The hosted workbench contains 138 motion sequences; this public repository bundl
 python tools/import_actions.py /path/to/ActionGroups
 ```
 
-The importer reads all servo channels in each `.d6a` file. The 3D preview supports full-body joint movement. The photo-based model is intended for inspecting timing and poses. Physical joint directions and travel limits require calibration.
+The importer reads all servo channels in each `.d6a` file. The 3D preview supports full-body joint movement.
 
 ## Run
 
