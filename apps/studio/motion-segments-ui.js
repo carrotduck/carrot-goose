@@ -1,21 +1,156 @@
-import {segmentMotion,sliceMotion} from './motion-segments.mjs?v=12';
-const s=window.studio,$=id=>document.getElementById(id),storage='goose_reviewed_fragments_v1';
-const pane=document.createElement('details');pane.id='atom-panel';pane.innerHTML=`<summary>Analyze motion library</summary><div class="pad"><button id="analyze-library">Analyze all motions</button> <button id="cancel-analysis" disabled>Cancel</button><p id="analysis-status" aria-live="polite"></p><select id="fragment-list" size="5" aria-label="Candidate fragments" style="width:100%"></select><div class="row"><label>Start frame <input id="fragment-start" type="number" min="1" style="width:60px"></label><label>End frame <input id="fragment-end" type="number" min="1" style="width:60px"></label></div><input id="fragment-name" aria-label="Fragment name" placeholder="Name this fragment" style="width:100%;margin:8px 0"><div class="row"><button id="preview-fragment" disabled>Preview fragment</button><button id="save-fragment" disabled>Confirm and save</button></div><p id="fragment-info"></p><button id="export-fragments">Export saved fragments</button></div>`;
-document.querySelector('.right').insertBefore(pane,document.querySelector('.joint-details'));
-const launcher=document.createElement('button');launcher.textContent='Analyze motion library';launcher.style.cssText='margin:8px;width:calc(100% - 16px)';launcher.onclick=()=>{pane.open=true;pane.scrollIntoView({block:'nearest'});};document.querySelector('.left .panelhead').after(launcher);
-let candidates=[],saved=[],epoch=0;
-try{saved=JSON.parse(localStorage.getItem(storage)||'[]');if(!Array.isArray(saved))saved=[];}catch{saved=[];}
-// Restore only structurally valid exported fragments.
-for(const item of saved){try{const checked=sliceMotion(item,0,item.frames.length-1,item.name);s.addAction({...checked,provenance:item.provenance});}catch{}}
-function select(){const c=candidates[Number($('fragment-list').value)];if(!c)return;$('fragment-start').value=c.start+1;$('fragment-end').value=c.end+1;$('fragment-name').value=s.label(c.action.name)+' · '+(Number($('fragment-list').value)+1);$('fragment-info').textContent=`${c.action.name} · ${c.reason} · ${c.fragment.provenance.channels.join(', ')||'Hold'}`;$('preview-fragment').disabled=$('save-fragment').disabled=false;}
-$('fragment-list').onchange=select;
-function draft(){const c=candidates[Number($('fragment-list').value)];if(!c)throw Error('Select a fragment');const name=$('fragment-name').value.trim();if(!name)throw Error('Name this fragment');return sliceMotion(c.action,Number($('fragment-start').value)-1,Number($('fragment-end').value)-1,name);}
-$('preview-fragment').onclick=()=>{try{s.choose(draft());$('play').click();}catch(e){$('fragment-info').textContent=e.message;}};
-$('save-fragment').onclick=()=>{try{const item=draft();const updated=[...saved,item];localStorage.setItem(storage,JSON.stringify(updated));saved=updated;s.addAction(item);$('fragment-info').textContent='Fragment saved';}catch(e){$('fragment-info').textContent=e.message;}};
-$('export-fragments').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({schema:'carrot-goose-fragments/v1',mode:'simulation_only',fragments:saved},null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='carrot-goose-fragments.json';a.click();URL.revokeObjectURL(url);};
-$('cancel-analysis').onclick=()=>{epoch++;$('analyze-library').disabled=false;$('cancel-analysis').disabled=true;$('analysis-status').textContent='Cancelled';};
-$('analyze-library').onclick=async()=>{const run=++epoch,actions=s.library.actions.filter(a=>a.source!=='reviewed_fragment').slice();candidates=[];$('fragment-list').replaceChildren();$('preview-fragment').disabled=$('save-fragment').disabled=true;$('analyze-library').disabled=true;$('cancel-analysis').disabled=false;let skipped=0;
- for(let i=0;i<actions.length;i++){if(run!==epoch)return;try{for(const part of segmentMotion(actions[i]))candidates.push({...part,action:actions[i]});}catch{skipped++;}$('analysis-status').textContent=`${i+1} / ${actions.length}`;if(i%5===0)await new Promise(r=>setTimeout(r,0));}
- if(run!==epoch)return;for(let i=0;i<candidates.length;i++){const c=candidates[i],o=document.createElement('option');o.value=i;o.textContent=`${s.label(c.action.name)} · ${c.start+1}–${c.end+1}`;$('fragment-list').append(o);}$('analysis-status').textContent=`${actions.length} motions · ${candidates.length} candidates · ${skipped} skipped`;$('analyze-library').disabled=false;$('cancel-analysis').disabled=true;if(candidates.length){$('fragment-list').value='0';select();}
+import { segmentMotion, sliceMotion } from "./motion-segments.mjs?v=12";
+const s = window.studio,
+  $ = (id) => document.getElementById(id),
+  storage = "goose_reviewed_fragments_v1";
+const pane = document.createElement("details");
+pane.id = "atom-panel";
+pane.innerHTML = `<summary>Analyze motion library</summary><div class="pad"><button id="analyze-library">Analyze all motions</button> <button id="cancel-analysis" disabled>Cancel</button><p id="analysis-status" aria-live="polite"></p><select id="fragment-list" size="5" aria-label="Candidate fragments" style="width:100%"></select><div class="row"><label>Start frame <input id="fragment-start" type="number" min="1" style="width:60px"></label><label>End frame <input id="fragment-end" type="number" min="1" style="width:60px"></label></div><input id="fragment-name" aria-label="Fragment name" placeholder="Name this fragment" style="width:100%;margin:8px 0"><div class="row"><button id="preview-fragment" disabled>Preview fragment</button><button id="save-fragment" disabled>Confirm and save</button></div><p id="fragment-info"></p><button id="export-fragments">Export saved fragments</button></div>`;
+document
+  .querySelector(".right")
+  .insertBefore(pane, document.querySelector(".joint-details"));
+const launcher = document.createElement("button");
+launcher.textContent = "Analyze motion library";
+launcher.style.cssText = "margin:8px;width:calc(100% - 16px)";
+launcher.onclick = () => {
+  pane.open = true;
+  pane.scrollIntoView({ block: "nearest" });
 };
-window.motionFragments={segmentMotion,sliceMotion,get candidates(){return candidates},get saved(){return saved}};
+document.querySelector(".left .panelhead").after(launcher);
+let candidates = [],
+  saved = [],
+  epoch = 0;
+try {
+  saved = JSON.parse(localStorage.getItem(storage) || "[]");
+  if (!Array.isArray(saved)) saved = [];
+} catch {
+  saved = [];
+}
+// Restore only structurally valid exported fragments.
+for (const item of saved) {
+  try {
+    const checked = sliceMotion(item, 0, item.frames.length - 1, item.name);
+    s.addAction({ ...checked, provenance: item.provenance });
+  } catch {}
+}
+function select() {
+  const c = candidates[Number($("fragment-list").value)];
+  if (!c) return;
+  $("fragment-start").value = c.start + 1;
+  $("fragment-end").value = c.end + 1;
+  $("fragment-name").value =
+    s.label(c.action.name) + " · " + (Number($("fragment-list").value) + 1);
+  $("fragment-info").textContent =
+    `${c.action.name} · ${c.reason} · ${c.fragment.provenance.channels.join(", ") || "Hold"}`;
+  $("preview-fragment").disabled = $("save-fragment").disabled = false;
+}
+$("fragment-list").onchange = select;
+function draft() {
+  const c = candidates[Number($("fragment-list").value)];
+  if (!c) throw Error("Select a fragment");
+  const name = $("fragment-name").value.trim();
+  if (!name) throw Error("Name this fragment");
+  return sliceMotion(
+    c.action,
+    Number($("fragment-start").value) - 1,
+    Number($("fragment-end").value) - 1,
+    name,
+  );
+}
+$("preview-fragment").onclick = () => {
+  try {
+    s.choose(draft());
+    $("play").click();
+  } catch (e) {
+    $("fragment-info").textContent = e.message;
+  }
+};
+$("save-fragment").onclick = () => {
+  try {
+    const item = draft();
+    const updated = [...saved, item];
+    localStorage.setItem(storage, JSON.stringify(updated));
+    saved = updated;
+    s.addAction(item);
+    $("fragment-info").textContent = "Fragment saved";
+  } catch (e) {
+    $("fragment-info").textContent = e.message;
+  }
+};
+$("export-fragments").onclick = () => {
+  const url = URL.createObjectURL(
+    new Blob(
+      [
+        JSON.stringify(
+          {
+            schema: "carrot-goose-fragments/v1",
+            mode: "simulation_only",
+            fragments: saved,
+          },
+          null,
+          2,
+        ),
+      ],
+      { type: "application/json" },
+    ),
+  );
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "carrot-goose-fragments.json";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+$("cancel-analysis").onclick = () => {
+  epoch++;
+  $("analyze-library").disabled = false;
+  $("cancel-analysis").disabled = true;
+  $("analysis-status").textContent = "Cancelled";
+};
+$("analyze-library").onclick = async () => {
+  const run = ++epoch,
+    actions = s.library.actions
+      .filter((a) => a.source !== "reviewed_fragment")
+      .slice();
+  candidates = [];
+  $("fragment-list").replaceChildren();
+  $("preview-fragment").disabled = $("save-fragment").disabled = true;
+  $("analyze-library").disabled = true;
+  $("cancel-analysis").disabled = false;
+  let skipped = 0;
+  for (let i = 0; i < actions.length; i++) {
+    if (run !== epoch) return;
+    try {
+      for (const part of segmentMotion(actions[i]))
+        candidates.push({ ...part, action: actions[i] });
+    } catch {
+      skipped++;
+    }
+    $("analysis-status").textContent = `${i + 1} / ${actions.length}`;
+    if (i % 5 === 0) await new Promise((r) => setTimeout(r, 0));
+  }
+  if (run !== epoch) return;
+  for (let i = 0; i < candidates.length; i++) {
+    const c = candidates[i],
+      o = document.createElement("option");
+    o.value = i;
+    o.textContent = `${s.label(c.action.name)} · ${c.start + 1}–${c.end + 1}`;
+    $("fragment-list").append(o);
+  }
+  $("analysis-status").textContent =
+    `${actions.length} motions · ${candidates.length} candidates · ${skipped} skipped`;
+  $("analyze-library").disabled = false;
+  $("cancel-analysis").disabled = true;
+  if (candidates.length) {
+    $("fragment-list").value = "0";
+    select();
+  }
+};
+window.motionFragments = {
+  segmentMotion,
+  sliceMotion,
+  get candidates() {
+    return candidates;
+  },
+  get saved() {
+    return saved;
+  },
+};

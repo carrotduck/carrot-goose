@@ -8,7 +8,7 @@
 | Head and arm coordination | Exercised during physical rehearsals, with subsequent revisions to transitions and return poses. |
 | Hug variants | Several variants caused shaking or interruptions. Candidate files are not all commissioned motions. |
 | Browser workbench | Joint previews, frame editing, language planning and playback have software checks. No direct hardware commands are sent by this interface. |
-| Motion atoms | The physical catalog contains named body contracts and composition functions. The browser planner currently reuses whole sequences or generates frames; it does not automatically segment all imported actions. |
+| Motion fragments | The workbench suggests cuts at pauses, direction changes and event boundaries. The author reviews and names fragments before reuse; the language planner can also adjust whole sequences or generate frames. |
 
 The source release includes the scene candidate and runtime as development artifacts, rather than certifying every included trajectory on a robot. Personal session logs are not published. Offline suites use simulated hardware; vendor SDK parity and personal audio-asset checks require separately supplied fixtures and are skipped when those fixtures are absent.
 

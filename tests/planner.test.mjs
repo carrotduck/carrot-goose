@@ -1,23 +1,120 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
-import express from 'express';
-import {createSimulationRouter} from '../integrations/duck/simulation.js';
-import {IDLE,makeMotion,compilePlan} from '../apps/studio/sim-core.mjs';
-const base=makeMotion('wave',[{pose:{'16':355},move_s:1},{pose:IDLE,move_s:1}]);const library={actions:[base]};
-test('scaling uses raw deltas and preserves return; semantic units isolated',()=>{let a=compilePlan({base_action:'wave',amplitude:.5,speed:.5},library,base);assert.equal(a.frames[0].target['16'],315);assert.equal(a.duration,4);assert.equal(a.frames[1].target['16'],275);assert.deepEqual(a.ranges['16'],[275,315]);assert.equal(a.hardware_executed,false);});
-test('reject unknown IDs, invalid PWM, nonfinite, malformed timing and unknown actions',()=>{for(const spec of [{steps:[{pose:{'19':500},move_s:1}]},{steps:[{pose:{pitch:500},move_s:1}]},{steps:[{pose:{'16':1001},move_s:1}]},{steps:[{pose:{'16':NaN},move_s:1}]},{steps:[{pose:{'16':300},move_s:-1}]},{base_action:'shell'}])assert.throws(()=>compilePlan(spec,library,base));});
-test('simulation HTTP: auth, mismatch, idempotency, failed model JSON and limits',async t=>{
- let calls=0,messages;let answer=JSON.stringify({base_action:'current',amplitude:.5,speed:.5,name:'test'});
- const app=express();app.use(express.json());app.use((req,res,next)=>{req.authUserId=req.headers['x-test-user'];next();});app.use('/api/chat/:userId/simulation',createSimulationRouter({library,generate:async input=>{calls++;messages=input;return {text:answer};}}));
- const server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));t.after(()=>server.close());const url=`http://127.0.0.1:${server.address().port}/api/chat/user1/simulation/plan`;
- const body={request_id:'request_0001',prompt:'慢一倍',current:{name:'wave',initial:IDLE,steps:[{pose:{'16':355},move_s:1}]}};
- const send=(b=body,user='user1')=>fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...(user?{'x-test-user':user}:{})},body:JSON.stringify(b)});
- assert.equal((await send(body,null)).status,401);assert.equal((await send(body,'other')).status,403);assert.equal(calls,0);
- let a=await (await send()).json();assert.equal(a.hardware_executed,false);assert.equal(a.action.duration,2);let b=await (await send()).json();assert.equal(a.plan_id,b.plan_id);assert.equal(calls,1);
- assert.match(messages[0].content,/Use only English/);assert.match(messages[0].content,/Forward shoulder: left 8 decrease, right 16 increase/);assert.match(messages[0].content,/Elbow bend: left 6 increase, right 14 decrease/);
- assert.equal((await send({...body,language:'zh'})).status,409);
- assert.equal((await send({...body,prompt:'不同内容'})).status,409);
- answer='not json';assert.equal((await send({...body,language:'zh',request_id:'request_0002'})).status,422);assert.match(messages[0].content,/Use only Chinese/);
- answer=JSON.stringify({steps:[{pose:{'19':500},move_s:1}]});assert.equal((await send({...body,request_id:'request_0003'})).status,422);
- for(let i=4;i<=6;i++)await send({...body,request_id:`request_000${i}`});assert.equal((await send({...body,request_id:'request_0007'})).status,429);
+import test from "node:test";
+import assert from "node:assert/strict";
+import express from "express";
+import { createSimulationRouter } from "../integrations/duck/simulation.js";
+import { IDLE, makeMotion, compilePlan } from "../apps/studio/sim-core.mjs";
+const base = makeMotion("wave", [
+  { pose: { 16: 355 }, move_s: 1 },
+  { pose: IDLE, move_s: 1 },
+]);
+const library = { actions: [base] };
+test("scaling uses raw deltas and preserves return; semantic units isolated", () => {
+  let a = compilePlan(
+    { base_action: "wave", amplitude: 0.5, speed: 0.5 },
+    library,
+    base,
+  );
+  assert.equal(a.frames[0].target["16"], 315);
+  assert.equal(a.duration, 4);
+  assert.equal(a.frames[1].target["16"], 275);
+  assert.deepEqual(a.ranges["16"], [275, 315]);
+  assert.equal(a.hardware_executed, false);
+});
+test("reject unknown IDs, invalid PWM, nonfinite, malformed timing and unknown actions", () => {
+  for (const spec of [
+    { steps: [{ pose: { 19: 500 }, move_s: 1 }] },
+    { steps: [{ pose: { pitch: 500 }, move_s: 1 }] },
+    { steps: [{ pose: { 16: 1001 }, move_s: 1 }] },
+    { steps: [{ pose: { 16: NaN }, move_s: 1 }] },
+    { steps: [{ pose: { 16: 300 }, move_s: -1 }] },
+    { base_action: "shell" },
+  ])
+    assert.throws(() => compilePlan(spec, library, base));
+});
+test("simulation HTTP: auth, mismatch, idempotency, failed model JSON and limits", async (t) => {
+  let calls = 0,
+    messages;
+  let answer = JSON.stringify({
+    base_action: "current",
+    amplitude: 0.5,
+    speed: 0.5,
+    name: "test",
+  });
+  const app = express();
+  app.use(express.json());
+  app.use((req, res, next) => {
+    req.authUserId = req.headers["x-test-user"];
+    next();
+  });
+  app.use(
+    "/api/chat/:userId/simulation",
+    createSimulationRouter({
+      library,
+      generate: async (input) => {
+        calls++;
+        messages = input;
+        return { text: answer };
+      },
+    }),
+  );
+  const server = app.listen(0, "127.0.0.1");
+  await new Promise((r) => server.once("listening", r));
+  t.after(() => server.close());
+  const url = `http://127.0.0.1:${server.address().port}/api/chat/user1/simulation/plan`;
+  const body = {
+    request_id: "request_0001",
+    prompt: "慢一倍",
+    current: {
+      name: "wave",
+      initial: IDLE,
+      steps: [{ pose: { 16: 355 }, move_s: 1 }],
+    },
+  };
+  const send = (b = body, user = "user1") =>
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(user ? { "x-test-user": user } : {}),
+      },
+      body: JSON.stringify(b),
+    });
+  assert.equal((await send(body, null)).status, 401);
+  assert.equal((await send(body, "other")).status, 403);
+  assert.equal(calls, 0);
+  let a = await (await send()).json();
+  assert.equal(a.hardware_executed, false);
+  assert.equal(a.action.duration, 2);
+  let b = await (await send()).json();
+  assert.equal(a.plan_id, b.plan_id);
+  assert.equal(calls, 1);
+  assert.match(messages[0].content, /Use only English/);
+  assert.match(
+    messages[0].content,
+    /Forward shoulder: left 8 decrease, right 16 increase/,
+  );
+  assert.match(
+    messages[0].content,
+    /Elbow bend: left 6 increase, right 14 decrease/,
+  );
+  assert.equal((await send({ ...body, language: "zh" })).status, 409);
+  assert.equal((await send({ ...body, prompt: "不同内容" })).status, 409);
+  answer = "not json";
+  assert.equal(
+    (await send({ ...body, language: "zh", request_id: "request_0002" }))
+      .status,
+    422,
+  );
+  assert.match(messages[0].content, /Use only Chinese/);
+  answer = JSON.stringify({ steps: [{ pose: { 19: 500 }, move_s: 1 }] });
+  assert.equal(
+    (await send({ ...body, request_id: "request_0003" })).status,
+    422,
+  );
+  for (let i = 4; i <= 6; i++)
+    await send({ ...body, request_id: `request_000${i}` });
+  assert.equal(
+    (await send({ ...body, request_id: "request_0007" })).status,
+    429,
+  );
 });
