@@ -6,7 +6,6 @@
 | Hand-following | The operator confirmed correct direction and natural following during separate physical sessions; tracking was not reliable in every integrated rehearsal. |
 | Webpage cues and voice | Physical sessions confirmed text-triggered motion and audible “Mm?” / “Hey” cues. |
 | Head and arm coordination | Exercised during physical rehearsals, with subsequent revisions to transitions and return poses. |
-| Hug variants | Several variants caused shaking or interruptions. Candidate files are not all commissioned motions. |
 | Browser workbench | Joint previews, frame editing, language planning and playback have software checks. No direct hardware commands are sent by this interface. |
 | Motion fragments | The workbench suggests cuts at pauses, direction changes and event boundaries. The author reviews and names fragments before reuse; the language planner can also adjust whole sequences or generate frames. |
 

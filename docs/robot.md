@@ -13,10 +13,10 @@
 | `tonypi_temperature.py` | Temperature-related device checks |
 | `protocol/` | Shared command structures used by these components |
 
-The physical development sessions included head tracking, arm gestures, coordinated head-and-arm sequences and short voice cues. Individual trajectories required revision during rehearsal. The 138-item hosted preview library is a collection of motion data, not a statement that every item passed a physical test. The public Python tests exercise software behavior without moving hardware.
+The physical development sessions included head tracking, arm gestures, coordinated head-and-arm sequences and short voice cues. Individual trajectories required revision during rehearsal. The hosted preview library contains 138 motion sequences. The public Python tests exercise software behavior without moving hardware.
 
 Run the Python tests from the repository root with `python -m unittest discover -s robot -p "test_*.py"`. Camera and physical execution require the TonyPi system image and its SDK. The modules retain standard installation paths such as `/home/pi/TonyPi` and the rehearsal service conventions under `/home/pi/yushi`; adapt these in the robot installation rather than assuming a new device matches them.
 
-There are different historical left/right conventions in the physical catalog and browser model. Use servo IDs when comparing them, and calibrate each axis on the actual robot before connecting exported poses to an executor. A range observed in an action is not a mechanical limit.
+Calibrate each axis on the actual robot before connecting exported poses to an executor. A range observed in an action is not a mechanical limit.
 
 The device client is included as `robot/yushi_client.py`; the scene runner and webpage transport are in `robot/rehearsal`. See [rehearsal setup](rehearsal.md). Personal connection settings and original manufacturer action backups are excluded.

@@ -19,4 +19,4 @@ Select a frame, adjust its targets and choose **Update** to save an edited copy.
 
 The photo-based geometry uses approximate pivot locations and display directions. Axis, direction and offset are available in **Joint mapping**. Numeric encoding bounds require physical calibration before use on a robot.
 
-The torso stays fixed in world space. The preview shows joint trajectories; walking displacement, balance, ground contact and actuator forces are outside this model. Optional imported channels 17 and 18 remain in sequence data.
+The torso stays fixed in world space. The preview shows joint trajectories. Optional imported channels 17 and 18 remain in sequence data.
