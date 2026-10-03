@@ -6,13 +6,13 @@
 | Hand-following | The operator confirmed correct direction and natural following during separate physical sessions; tracking was not reliable in every integrated rehearsal. |
 | Webpage cues and voice | Physical sessions confirmed text-triggered motion and audible “Mm?” / “Hey” cues. |
 | Head and arm coordination | Exercised during physical rehearsals, with subsequent revisions to transitions and return poses. |
-| Browser workbench | Joint previews, frame editing, language planning and playback have software checks. No direct hardware commands are sent by this interface. |
+| Browser workbench | Software checks cover joint previews, frame editing, language planning and playback. |
 | Motion fragments | The workbench suggests cuts at pauses, direction changes and event boundaries. The author reviews and names fragments before reuse; the language planner can also adjust whole sequences or generate frames. |
 
 Personal session logs are not published. Offline suites use simulated hardware; vendor SDK parity and personal audio-asset checks require separately supplied fixtures and are skipped when those fixtures are absent.
 
-No user study has yet established perceived responsiveness, recognition or social presence. The proposed timing comparison is described on the project website.
+The [proposed timing comparison](research-framing.md) examines perceived responsiveness.
 
 ## Full-body workbench update
 
-Browser checks exercised all 18 articulated channels, knee-to-ankle hierarchy, lower-body frame sampling and language selection. Nine JavaScript tests passed, including leg scaling and optional-channel preservation. The anonymous live planner generated a knee-bend/return sequence and started preview playback. Analysis of 138 library sequences produced 2,690 candidates without structural errors. The academic video button was verified to open the player for SYHgv-Zi3hE; video streaming itself was not measured.
+Browser checks covered all 18 articulated channels, including the knee-to-ankle hierarchy and lower-body frame sampling. Tests also covered leg scaling and optional-channel preservation. Analysis of 138 library sequences produced 2,690 candidates without structural errors.

@@ -28,6 +28,6 @@ For the persistent client, copy `secrets.env.example` to `secrets.env` on the de
 
 Voice playback expects `robot/rehearsal/audio/mm.wav` and `hey.wav` (mono, 16-bit PCM at 22050 Hz). Supply voice assets you have permission to use. The release includes audio playback code and a synthetic offline test fixture; personal voice recordings are not bundled.
 
-`full_scene_candidate.json` preserves its candidate status. Review servo IDs, initial pose, motion ranges and installed action files for the device. The browser export is not a direct hardware deployment format.
+Before running `full_scene_candidate.json`, review servo IDs, initial pose, motion ranges and installed action files for the device. Adapt exported frames to the controller's expected format.
 
 For offline checks, run the commands in the repository README. `run_scene_take.py --help` describes available modes without running a take. Hardware execution requires an explicit `--run`; do not treat a successful software test as physical commissioning.

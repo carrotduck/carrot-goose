@@ -6,6 +6,6 @@ This endpoint is independent of Carrot Duck accounts. It accepts same-origin wor
 
 The hosted workbench is at https://carrotgoose.online/. Local installations use `server.mjs` and the model settings in `.env.example`. Editing and playback also work without a model provider.
 
-`createWorkbenchRouter` uses the same motion compiler as the account-scoped integration. Existing Carrot Duck conversation routes retain their session checks. Robot rehearsal coordination is separate from browser motion planning: the browser endpoint returns simulation data and does not issue robot commands.
+`createWorkbenchRouter` uses the same motion compiler as the account-scoped integration. Existing Carrot Duck conversation routes retain their session checks. The planning endpoint returns frame data for preview in the editor.
 
 For another deployment, serve the editor and endpoint from the same origin, configure the permitted origin list and HTTPS, and keep model credentials on the server.
