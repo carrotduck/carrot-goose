@@ -8,6 +8,6 @@ Select a candidate and edit the one-based start/end frame numbers. **Preview fra
 
 Each fragment preserves source name/reference, source frame range, source start time, entry/exit poses and active channels. All channel values are retained, including lower-body motion and optional imported channels. Original gates and speech cues are listed in provenance and removed from preview playback. The original motion remains unchanged.
 
-Analysis of the 138-sequence development library produced 2,690 candidates with no timing-total discrepancies or rejected sequences. This checks structural preservation, not semantic quality or physical execution. Fragment names and cut points still require review. The language planner does not yet automatically retrieve or compose this reviewed collection.
+Analysis of the 138-sequence development library produced 2,690 candidates with no timing-total discrepancies or rejected sequences. Review each cut point and name the fragment before reuse. The language planner does not yet automatically retrieve or compose this reviewed collection.
 
 The public tests check reversal boundaries, entry poses, channel retention, event handling and source immutability. Physical transition validation remains a separate step.
