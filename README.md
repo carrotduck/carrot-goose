@@ -99,6 +99,8 @@ python -m unittest discover -s robot/rehearsal -p "test_*.py"
 
 ## References
 
+[Research references](docs/research-references.md) connect conversational performance and adaptive interaction literature to the project's design questions.
+
 [Hiwonder TonyPi](https://github.com/Hiwonder/TonyPi) provides the platform code and action-file reference. [URDF Loaders](https://github.com/gkjohnson/urdf-loaders) is a useful reference for future calibrated robot models. The browser currently uses Three.js and a procedural model. Dependency attribution is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 See [joint mapping and editing](docs/full-body-preview.md).
